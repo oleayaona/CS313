@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS & JS</title>
+    <link href="./colors.css" rel="stylesheet">
+    <style>
+        main {
+            width: 80%;
+            margin: auto;
+            padding: 40px;
+        }
+        .boxes {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .box {
+            width: 100%;
+            min-height: 250px;
+            text-align: center;
+        }
+        .box h1 {
+            margin-top: 25%;
+            font-weight: lighter;
+        }
+        #first-div {
+            background-color: #302820;
+            color: #f7ebe4;
+        }
+        #second-div {
+            background-color: #fae8d6;
+            color: #504538;
+        }
+        #third-div {
+            background-color: #19442f;
+            color: #edfcf5;
+        }
+        .box:hover {
+            font-weight: 900;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="boxes">
+            <div class="box" id="first-div">
+                <h1>Cocoa</h1>
+                <input name="color" id="color" type="color">
+                <button id="colorBtn" onclick="changeColor()">Change color</button>
+            </div>
+            <div class="box" id="second-div"><h1>Latte</h1></div>
+            <div class="box" id="third-div">
+                <h1>Forrest</h1>
+                <button>Fade</button>
+            </div>
+        </div>
+        <button>Click me!</button>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='./colors.js'></script>
+    <script>
+        // $(document).ready(function() {
+        //     var color = $("color").val();
+        //     $("first-div").css("color", color);
+        // })
+        
+        function changeColor() {
+            var color = document.querySelector('#color').value;
+            const div = document.querySelector('#first-div');
+            div.style.backgroundColor = color;
+        }
+
+        function fade() {
+            const div = document.querySelector('#third-div');
+            div.setAttribute('style', `visibility: `);
+        }
+
+        // async function getJSON(url='http://thecolorapi.com/id?') {
+        //     try {
+        //         const response = await fetch(url);
+        //     if (!response.ok) {
+        //         throw Error(response.statusText);
+        //     } else {
+        //         const fetchJson = await response.json();
+        //         return fetchJson;
+        //     }
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>
