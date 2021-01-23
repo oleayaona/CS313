@@ -10,11 +10,12 @@
             <td>03</td>
             <td>
                 <ul>
-                    <li>Coming soon...</li>
+                    <li><a href="week_03/shopping_cart/index.php">Shopping Cart Assignment</a></li>
                 </ul>
             </td>
             <td>Jan 21, 2020</td>
         </tr>
+        
     </table>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/modules/footer.php'; ?>
