@@ -20,7 +20,7 @@
             <p>Lifestyle and Home Decor</p>
         </div>
         <nav>
-            <?php include $_SERVER['DOCUMENT_ROOT'] . './modules/nav.php'; ?>
+            <?php require $_SERVER['DOCUMENT_ROOT'] . './modules/nav.php'; ?>
         </nav>
     </header>
 
