@@ -20,7 +20,7 @@
             <p>Lifestyle and Home Decor</p>
         </div>
         <nav>
-            <?php include $_SERVER['DOCUMENT_ROOT'] . 'web/week_03/shopping_cart/modules/nav.php'; ?>
+            <?php echo "$_SERVER[DOCUMENT_ROOT] . 'web/week_03/shopping_cart/modules/nav.php';" ?>
         </nav>
     </header>
 
