@@ -15,6 +15,15 @@
             </td>
             <td>Jan 21, 2020</td>
         </tr>
+        <tr>
+            <td>04</td>
+            <td>
+                <ul>
+                    <li><a href="https://github.com/oleayaona/CS313/blob/master/db/myDb.sql">Database Setup SQL File</a></li>
+                </ul>
+            </td>
+            <td>Jan 30, 2020</td>
+        </tr>
         
     </table>
 
