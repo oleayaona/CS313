@@ -63,7 +63,7 @@ switch ($action){
       $_SESSION['message'] = "An error occurred. Could not delete item";
     }
     // build cart display
-    $orders = array_count_values(array_column($_SESSION['cart'], 'id'));
+    $orders = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
     if (count($orders) != 0) {
       $cartDisplay = buildCartDisplay($products, $orders);
     } else {
