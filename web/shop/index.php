@@ -2,6 +2,9 @@
 // MODEL
 session_start();
 
+echo "YO!";
+exit;
+
 require_once 'model/shop-model.php';
 require_once 'library/functions.php';
 // Get the database connection file
