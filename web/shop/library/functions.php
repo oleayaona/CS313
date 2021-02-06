@@ -48,13 +48,13 @@ function buildSummaryDisplay($products, $orders) {
     $display = '<ul class="summary-list">';
     foreach($orders as $key => $value) {
         foreach ($products as $product) {
-            if ($key == $product['id']) {
-                $total += $product['price'];
+            if ($key == $product['prod_id']) {
+                $total += $product['prod_price'];
                 $display .= "<li class='summary-item'>";
                 $display .= "<p>$value</p>";
-                $display .= "<img class='product-img' src='./images/$product[image]' alt='$product[name]'>";
-                $display .= "<h4>$product[name]</h4>";
-                $display .= "<p>&#8369;" . number_format($value*$product['price'], 2) . "</p>";
+                $display .= "<img class='product-img' src='./images/$product[prod_img]' alt='$product[prod_name]'>";
+                $display .= "<h4>$product[prod_name]</h4>";
+                $display .= "<p>&#8369;" . number_format($value*$product['prod_price'], 2) . "</p>";
             }
         }
     }
