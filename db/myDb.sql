@@ -63,6 +63,24 @@ INSERT INTO category (
 	name
 )
 VALUES (
-	'Natural'
+	'Glassware'
+);
+
+
+INSERT INTO product (
+	name,
+	prod_price,
+	prod_description,
+	prod_stock,
+	prod_img,
+	prod_category
+)
+VALUES (
+	'Clam Shell Jewelry Holder',
+	'999',
+	'A gorgeous way to keep your jewelry in order. This can also double as a lamp as it is equipped with a nightlight.',
+	12,
+	'shell.png',
+	2
 );
 

@@ -37,13 +37,13 @@ switch ($action){
     }
 
     // set message for success
-    $_SESSION['message'] = "$product[name] successfully added to cart.";
+    $_SESSION['message'] = "$product[prod_name] successfully added to cart.";
     $productsDisplay = buildProductsDisplay($products);
     include 'view/browse.php';
     break;
 
   case 'cart':
-    $orders = array_count_values(array_column($_SESSION['cart'], 'id'));
+    $orders = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
     // echo "<pre>" . print_r($orders, true) . "</pre>" ;
     if (count($orders) != 0) {
       $cartDisplay = buildCartDisplay($products, $orders);

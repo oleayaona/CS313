@@ -22,18 +22,18 @@ function buildCartDisplay($products, $orders) {
     $display .= "<tr><th></th><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th></tr>";
     foreach($orders as $key => $value) {
         foreach ($products as $product) {
-            if ($key == $product['id']) {
-                $total += $product['price'];
+            if ($key == $product['prod_id']) {
+                $total += $product['prod_price'];
                 $display .= "<tr class='cart-row'>";
-                $display .= "<td><img class='product-img' src='./images/$product[image]' alt='$product[name]'></td>";
+                $display .= "<td><img class='product-img' src='./images/$product[prod_image]' alt='$product[prod_name]'></td>";
                 $display .= "<td>
-                                <h3>$product[name]</h3>
-                                <p>$product[stock] items left</p>
-                                <a href='./index.php?action=delete-from-cart&id=" . urlencode($product['id']) . "'><p>REMOVE</p></a>
+                                <h3>$product[prod_name]</h3>
+                                <p>$product[prod_stock] items left</p>
+                                <a href='./index.php?action=delete-from-cart&id=" . urlencode($product['prod_id']) . "'><p>REMOVE</p></a>
                             </td>";
-                $display .= "<td><p>&#8369;" . number_format($product['price'], 2) . "</p></td>";
+                $display .= "<td><p>&#8369;" . number_format($product['prod_price'], 2) . "</p></td>";
                 $display .= "<td><p>$value</p></td>";
-                $display .= "<td><p>&#8369;" . number_format($value*$product['price'], 2) . "</p></td>";
+                $display .= "<td><p>&#8369;" . number_format($value*$product['prod_price'], 2) . "</p></td>";
                 $display .= '</tr>';
             }
         }
