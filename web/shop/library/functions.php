@@ -4,11 +4,11 @@
 function buildProductsDisplay($products){
     $display = '<ul class="products">';
     foreach ($products as $product) {
-     $display .= "<li><a href='./index.php?action=product-info&id=" . urlencode($product['id']) . "'>";
-     $display .= "<img class='product-img' src='./images/$product[image]' alt='$product[name]'></a>";
-     $display .= "<a href='../index.php?action=product-info&id=" . urlencode($product['id']) . "'><h2>" . strtoupper($product['name']) . "</h2></a>";
-     $display .= "<h4>&#8369;". number_format($product['price'], 2) ."</h4>";
-     $display .= "<a href='./index.php?action=add-to-cart&id=" . urlencode($product['id']) . "'><h5 class='add-cart'>ADD TO CART</h3></a>";
+     $display .= "<li><a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'>";
+     $display .= "<img class='product-img' src='./images/$product[prod_img]' alt='$product[prod_name]'></a>";
+     $display .= "<a href='../index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'><h2>" . strtoupper($product['prod_name']) . "</h2></a>";
+     $display .= "<h4>&#8369;". number_format($product['prod_price'], 2) ."</h4>";
+     $display .= "<a href='./index.php?action=add-to-cart&id=" . urlencode($product['prod_id']) . "'><h5 class='add-cart'>ADD TO CART</h3></a>";
      $display .= '</li>';
     }
     $display .= '</ul>';
