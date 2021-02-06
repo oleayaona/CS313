@@ -10,7 +10,7 @@
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital@0;1&display=swap" rel="stylesheet">
-    <link href="./shopping_cart.css" rel="stylesheet">
+    <link href="../shopping_cart.css" rel="stylesheet">
 </head>
 
 <body>
