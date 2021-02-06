@@ -29,7 +29,7 @@ function buildCartDisplay($products, $orders) {
                 $display .= "<td>
                                 <h3>$product[prod_name]</h3>
                                 <p>$product[prod_stock] items left</p>
-                                <a href='./index.php?action=delete-from-cart&id=" . urlencode($product['prod_id']) . "'><p>REMOVE</p></a>
+                                <a href='./index.php?action=delete-from-cart&prod_id=" . urlencode($product['prod_id']) . "'><p>REMOVE</p></a>
                             </td>";
                 $display .= "<td><p>&#8369;" . number_format($product['prod_price'], 2) . "</p></td>";
                 $display .= "<td><p>$value</p></td>";
