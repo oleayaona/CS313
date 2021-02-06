@@ -25,8 +25,8 @@ function dbConnect(){
 		$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	}
 	catch (PDOException $e) {
-		// echo "Error connecting to DB. Details: $e";
-		header('Location: /phpmotors/CSE341/week_03/shop/view/500.php');
+		echo "Error connecting to DB. Details: $e";
+		// header('Location: /web/shop/view/500.php');
 		exit;
 	}
 
