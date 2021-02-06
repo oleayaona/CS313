@@ -25,7 +25,7 @@ function buildCartDisplay($products, $orders) {
             if ($key == $product['prod_id']) {
                 $total += $product['prod_price'];
                 $display .= "<tr class='cart-row'>";
-                $display .= "<td><img class='product-img' src='../images/$product[prod_image]' alt='$product[prod_name]'></td>";
+                $display .= "<td><img class='product-img' src='../shop/images/$product[prod_image]' alt='$product[prod_name]'></td>";
                 $display .= "<td>
                                 <h3>$product[prod_name]</h3>
                                 <p>$product[prod_stock] items left</p>
