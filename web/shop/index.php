@@ -20,11 +20,19 @@ switch ($action){
     include 'view/browse.php';
     break;
 
+  // Case for when user wants to add an item to cart
   case 'add-to-cart':
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    $product = getOneProduct($id);
+    $id = filter_input(INPUT_GET, 'prod_id', FILTER_SANITIZE_NUMBER_INT);
+    $product = getOneProduct($id, $products);
+    
     // add item to cart in model
-    addtoCart($product);
+    if ($product != 0) {
+      addtoCart($product);
+    } else {
+      $_SESSION['message'] = "$product[prod_name] could not be added to cart.";
+      include 'view/browse.php';
+    }
+
     // set message for success
     $_SESSION['message'] = "$product[name] successfully added to cart.";
     $productsDisplay = buildProductsDisplay($products);
