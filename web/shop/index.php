@@ -7,6 +7,9 @@ require_once 'library/functions.php';
 // Get the database connection file
 require_once 'library/dbConnect.php';
 
+echo "YO!";
+exit;
+
 $products = getProducts();
 
 $action = filter_input(INPUT_POST, 'action');
