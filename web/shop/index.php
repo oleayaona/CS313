@@ -27,9 +27,12 @@ switch ($action){
     
     // add item to cart in model
     if ($product != 0) {
+      // if successful
       addtoCart($product);
     } else {
+      // if not, alert user and return to browse page
       $_SESSION['message'] = "$product[prod_name] could not be added to cart.";
+      $productsDisplay = buildProductsDisplay($products);
       include 'view/browse.php';
     }
 

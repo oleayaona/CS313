@@ -20,10 +20,10 @@ function getOneProduct($id, $products) {
     foreach($products as $product) {
         if ($product['prod_id'] == $id) {
             return $product;
-        } else {
-            return 0;
         }
     };
+    // if there's no match, return fail
+    return 0;
 }
 
 function getCartItems() {
