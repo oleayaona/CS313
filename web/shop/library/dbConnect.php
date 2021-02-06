@@ -23,6 +23,8 @@ function dbConnect(){
 
 		// this line makes PDO give us an exception when there are problems, and can be very helpful in debugging!
 		$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
+		return $db;
 	}
 	catch (PDOException $e) {
 		echo "Error connecting to DB. Details: $e";
