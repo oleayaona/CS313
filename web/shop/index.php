@@ -85,7 +85,7 @@ switch ($action){
     $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_STRING);
     $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
 
-    $orders = array_count_values(array_column($_SESSION['cart'], 'id'));
+    $orders = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
 
     // Update inventory items (NOT FUNCTIONAL YET)
     // foreach($orders as $key => $value) {
