@@ -46,3 +46,23 @@ CREATE TABLE order_item
 	order_quantity INT NOT NULL
 );
 
+INSERT INTO customer (
+	email,
+	customer_password,
+	customer_firstname,
+	customer_lastname
+)
+VALUES (
+	'user2@gmail.com',
+	'p@ssw0rd',
+	'admin',
+	'user'
+);
+
+INSERT INTO category (
+	name
+)
+VALUES (
+	'Natural'
+);
+
