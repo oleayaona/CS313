@@ -58,6 +58,7 @@ function getProducts(){
     $stmt->execute(); 
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
+    echo "PRODUCTS acquired!";
     return $products; 
 }
 
