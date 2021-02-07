@@ -17,7 +17,7 @@ function getProducts(){
 
 function getProductsByCategory($category) {
     $db = dbConnect(); 
-    $sql = ' SELECT * FROM product WHERE :category'; 
+    $sql = ' SELECT * FROM product WHERE category = :category'; 
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':category', $category, PDO::PARAM_INT);
     $stmt->execute(); 

@@ -24,13 +24,13 @@ switch ($action){
     break;
 
   case 'filter':
-    $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_STRING);
+    $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
 
     $categories = getCategories();
     $categoriesDisplay = buildCategoriesSelect($categories);
 
     // If all products
-    if ($category == 'all') {
+    if ($category == 0) {
       $productsDisplay = buildProductsDisplay($products);
     } else {
       // if specific category

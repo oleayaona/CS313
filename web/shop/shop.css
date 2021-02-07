@@ -185,6 +185,7 @@ footer {
 .categories {
     width: 60%;
     text-align: right;
+    margin: auto;
 }
 /*------- CART ----------*/
 .cart-container {

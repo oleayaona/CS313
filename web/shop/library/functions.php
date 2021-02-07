@@ -67,7 +67,7 @@ function buildSummaryDisplay($products, $orders) {
 function buildCategoriesSelect($categories) {
     $display = '<form action="index.php" method="GET" class="categories">';
     $display .= '<label for="categories">Filter</label><select name="category" onchange="this.form.submit()">';
-    $display .= "<option value='all'>All</option>";
+    $display .= "<option value='0'>All</option>";
     foreach ($categories as $category) {
         $display .= "<option value='$category[category_name]'>$category[category_name]</option> ";
         // if ($selected != 'all') {
