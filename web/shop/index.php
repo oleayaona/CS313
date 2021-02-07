@@ -18,7 +18,7 @@ switch ($action){
   case 'shop':
     // Get categories
     $categories = getCategories();
-    $categoriesDisplay = buildCategoriesSelect($categories);
+    $categoriesDisplay = buildCategoriesSelect($categories, 0);
     $productsDisplay = buildProductsDisplay($products);
     include 'view/browse.php';
     break;
@@ -27,7 +27,7 @@ switch ($action){
     $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
 
     $categories = getCategories();
-    $categoriesDisplay = buildCategoriesSelect($categories);
+    $categoriesDisplay = buildCategoriesSelect($categories, $category);
 
     // If all products
     if ($category == 0) {
