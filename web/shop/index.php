@@ -18,19 +18,26 @@ switch ($action){
   case 'shop':
     // Get categories
     $categories = getCategories();
-    $categoriesDisplay = buildCategoriesSelect($categories);
+    $categoriesDisplay = buildCategoriesSelect($categories, null);
     $productsDisplay = buildProductsDisplay($products);
     include 'view/browse.php';
     break;
 
   case 'filter':
     $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_STRING);
-    $productsByCategory = getProductsByCategory($category);
 
-    // Get categories
     $categories = getCategories();
-    $categoriesDisplay = buildCategoriesSelect($categories);
-    $productsDisplay = buildProductsDisplay($productsByCategory);
+    $categoriesDisplay = buildCategoriesSelect($categories, $category);
+
+    // If all products
+    if ($category == 'all') {
+      $productsDisplay = buildProductsDisplay($products);
+    } else {
+      // if specific category
+      $productsByCategory = getProductsByCategory($category);
+      $productsDisplay = buildProductsDisplay($productsByCategory);
+    }
+
     include 'view/browse.php';
     break;
 
