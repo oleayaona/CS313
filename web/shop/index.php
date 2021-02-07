@@ -49,6 +49,8 @@ switch ($action){
     } else {
       $_SESSION['message'] = "Sorry, no matches. :(";
     }
+    $categories = getCategories();
+    $categoriesDisplay = buildCategoriesSelect($categories, 0);
     include 'view/browse.php';
     break;
 
@@ -72,12 +74,16 @@ switch ($action){
       // if not, alert user and return to browse page
       $_SESSION['message'] = "$product[prod_name] could not be added to cart.";
       $productsDisplay = buildProductsDisplay($products);
+      $categories = getCategories();
+      $categoriesDisplay = buildCategoriesSelect($categories, 0);
       include 'view/browse.php';
     }
 
     // set message for success
     $_SESSION['message'] = "$product[prod_name] successfully added to cart.";
     $productsDisplay = buildProductsDisplay($products);
+    $categories = getCategories();
+    $categoriesDisplay = buildCategoriesSelect($categories, 0);
     include 'view/browse.php';
     break;
 
