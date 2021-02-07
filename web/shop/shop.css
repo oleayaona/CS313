@@ -181,6 +181,11 @@ footer {
     text-align: center;
     padding-top: 20px;
 }
+/*------- FILTER --------*/
+.categories {
+    width: 60%;
+    text-align: right;
+}
 /*------- CART ----------*/
 .cart-container {
     background-color: white;

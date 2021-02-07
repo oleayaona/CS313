@@ -64,20 +64,20 @@ function buildSummaryDisplay($products, $orders) {
 }
 
 
-function buildCategoriesSelect($categories, $selected) {
-    $display = '<form action="index.php" method="GET">';
-    $display .= '<label for="categories">Filter</label><select name="category" class="categories" onchange="this.form.submit()">';
+function buildCategoriesSelect($categories) {
+    $display = '<form action="index.php" method="GET" class="categories">';
+    $display .= '<label for="categories">Filter</label><select name="category" onchange="this.form.submit()">';
     $display .= "<option value='all'>All</option>";
     foreach ($categories as $category) {
-        $display .= "<option value='$category[category_name]' ";
-        if ($selected != 'all') {
-            if ($category['category_name'] == $selected) {
-                $display .= ' selected ';
-            } else {
-                $display .= ' ';
-            }
-        }
-        $display .= `>$category[category_name]</option>`;
+        $display .= "<option value='$category[category_name]'>$category[category_name]</option> ";
+        // if ($selected != 'all') {
+        //     if ($category['category_name'] == $selected) {
+        //         $display .= ' selected ';
+        //     } else {
+        //         $display .= ' ';
+        //     }
+        // }
+        // $display .= `>$category[category_name]</option>`;
     }
     $display .= '</select>';
     $display .= '<input type="hidden" name="action" value="filter"></form>';
