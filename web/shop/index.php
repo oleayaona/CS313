@@ -18,7 +18,7 @@ switch ($action){
   case 'shop':
     // Get categories
     $categories = getCategories();
-    $categoriesDisplay = buildCategoriesSelect($categories, null);
+    $categoriesDisplay = buildCategoriesSelect($categories, "all");
     $productsDisplay = buildProductsDisplay($products);
     include 'view/browse.php';
     break;

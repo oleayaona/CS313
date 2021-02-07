@@ -69,17 +69,15 @@ function buildCategoriesSelect($categories, $selected) {
     $display .= '<label for="categories">Filter</label><select name="category" class="categories" onchange="this.form.submit()">';
     $display .= "<option value='all'>All</option>";
     foreach ($categories as $category) {
-        $display .= '<option ';
-        if ($selected != null) {
+        $display .= "<option value='$category[category_name]' ";
+        if ($selected != 'all') {
             if ($category['category_name'] == $selected) {
-                $display .= 'selected ';
+                $display .= ' selected ';
             } else {
                 $display .= ' ';
             }
-        } else {
-            $display .= ' ';
         }
-        $display .= `value="$category[category_name]">$category[category_name]</option>`;
+        $display .= `>$category[category_name]</option>`;
     }
     $display .= '</select>';
     $display .= '<input type="hidden" name="action" value="filter"></form>';
