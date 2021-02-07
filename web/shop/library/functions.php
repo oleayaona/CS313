@@ -6,7 +6,7 @@ function buildProductsDisplay($products){
     foreach ($products as $product) {
      $display .= "<li><a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'>";
      $display .= "<img class='product-img' src='./images/$product[prod_img]' alt='$product[prod_name]'></a>";
-     $display .= "<a href='../index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'><h2>" . strtoupper($product['prod_name']) . "</h2></a>";
+     $display .= "<a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'><h2>" . strtoupper($product['prod_name']) . "</h2></a>";
      $display .= "<h4>&#8369;". number_format($product['prod_price'], 2) ."</h4>";
      $display .= "<a href='./index.php?action=add-to-cart&id=" . urlencode($product['prod_id']) . "'><h5 class='add-cart'>ADD TO CART</h3></a>";
      $display .= '</li>';
@@ -77,6 +77,16 @@ function buildCategoriesSelect($categories, $selected) {
     }
     $display .= '</select>';
     $display .= '<input type="hidden" name="action" value="filter"></form>';
+    return $display;
+}
+
+function buildProductInfoDisplay($product) {
+    $display = '<section class="info-display">';
+    $display .= "<img src='./images/$product[prod_img]' alt='$product[prod_name]'>";
+    $display .= "<div><h2>$product[prod_name]</h2>";
+    $display .= '<p>&#8369;'. number_format($product['prod_price'], 2) ."</p><p>$product[prod_description]</p>";
+    $display .= '<a href="./index.php?action=add-to-cart&id=' . urlencode($product['prod_id']) . '"><h5 class="add-cart">ADD TO CART</h3></a>';
+    $display .= '</div> </section>';
     return $display;
 }
 

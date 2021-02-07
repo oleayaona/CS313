@@ -37,7 +37,6 @@ switch ($action){
       $productsByCategory = getProductsByCategory($category);
       $productsDisplay = buildProductsDisplay($productsByCategory);
     }
-
     include 'view/browse.php';
     break;
 
@@ -51,6 +50,13 @@ switch ($action){
       $_SESSION['message'] = "Sorry, no matches. :(";
     }
     include 'view/browse.php';
+    break;
+
+  case 'product-info':
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    $product = getOneProduct($id);
+    $productInfoDisplay = buildProductInfoDisplay($product);
+    include 'view/product_details.php';
     break;
 
   // Case for when user wants to add an item to cart

@@ -187,6 +187,37 @@ footer {
     text-align: right;
     margin: auto;
 }
+/*-------- PRODUCT INFO -------*/
+.info-display {
+    padding: 50px 40px;
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Open Sans', sans-serif;
+}
+.info-display div {
+    flex-grow: 1;
+}
+.info-display img {
+    width: 50%;
+    padding: 20px;
+}
+.info-display a {
+    text-decoration: none;
+}
+.info-display a h5 {
+    border: 1px solid #7e7e7e;
+    color: #7e7e7e;
+    border-radius: 5px;
+    width: 28%;
+    padding: 5px;
+    text-align: center;
+}
+.info-display a h5:hover {
+    border: 1px solid #474747;
+    color: #474747;
+}
 /*------- CART ----------*/
 .cart-container {
     background-color: white;
