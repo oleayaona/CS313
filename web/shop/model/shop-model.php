@@ -15,6 +15,17 @@ function getProducts(){
     return $products; 
 }
 
+function getProductsByCategory($category) {
+    $db = dbConnect(); 
+    $sql = ' SELECT * FROM product WHERE :category'; 
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':category', $category, PDO::PARAM_INT);
+    $stmt->execute(); 
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $products; 
+}
+
 // Gets one product with matching id
 function getOneProduct($id, $products) {
     foreach($products as $product) {
@@ -24,6 +35,16 @@ function getOneProduct($id, $products) {
     };
     // if there's no match, return fail
     return 0;
+}
+
+function getCategories(){
+    $db = dbConnect(); 
+    $sql = 'SELECT * FROM category '; 
+    $stmt = $db->prepare($sql);
+    $stmt->execute(); 
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $results;
 }
 
 function getCartItems() {

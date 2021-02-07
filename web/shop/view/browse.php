@@ -32,6 +32,11 @@
                 }
         ?>
         </h3>
+        <?php 
+                if (isset($categoriesDisplay)) {
+                    echo $categoriesDisplay;
+                }
+            ?>
         <div class="products-container">
             <h2>ALL PRODUCTS</h2>
             <hr id="products-hr">

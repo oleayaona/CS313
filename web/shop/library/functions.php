@@ -63,4 +63,16 @@ function buildSummaryDisplay($products, $orders) {
     return $display;
 }
 
+
+function buildCategoriesSelect($categories) {
+    $display = '<label for="categories">Filter</label><select class="categories">';
+    foreach ($categories as $category) {
+        $display .= '<option>';
+        $display .= `<a href="./index.php?action=filter&category=` . urlencode($category['name']) . `>$category[name]</a>`;
+        $display .= '</option>';
+    }
+    $display .= '</select>';
+    return $display;
+}
+
 ?>

@@ -16,7 +16,21 @@ if ($action == NULL){
 
 switch ($action){
   case 'shop':
+    // Get categories
+    $categories = getCategories();
+    $categoriesDisplay = buildCategoriesSelect($categories);
     $productsDisplay = buildProductsDisplay($products);
+    include 'view/browse.php';
+    break;
+
+  case 'filter':
+    $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_STRING);
+    $productsByCategory = getProductsByCategory($category);
+
+    // Get categories
+    $categories = getCategories();
+    $categoriesDisplay = buildCategoriesSelect($categories);
+    $productsDisplay = buildProductsDisplay($productsByCategory);
     include 'view/browse.php';
     break;
 
