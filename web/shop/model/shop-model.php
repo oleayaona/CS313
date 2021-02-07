@@ -31,7 +31,7 @@ function getOneProduct($id) {
     $db = dbConnect(); 
     $sql = ' SELECT * FROM product WHERE prod_id = :id'; 
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':id', $$id, PDO::PARAM_INT);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute(); 
     $product = $stmt->fetch(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
