@@ -68,7 +68,7 @@ function buildCategoriesSelect($categories) {
     $display = '<label for="categories">Filter</label><select class="categories">';
     foreach ($categories as $category) {
         $display .= '<option>';
-        $display .= `<a href="./index.php?action=filter&category=` . urlencode($category['name']) . `>$category[name]</a>`;
+        $display .= `<a href="./index.php?action=filter&category=` . urlencode($category['category_name']) . `>$category[category_name]</a>`;
         $display .= '</option>';
     }
     $display .= '</select>';
