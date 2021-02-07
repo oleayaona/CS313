@@ -38,7 +38,7 @@
                 }
             ?>
         <div class="products-container">
-            <h2>ALL PRODUCTS</h2>
+            <h2>PRODUCTS</h2>
             <hr id="products-hr">
             <?php 
                 if (isset($productsDisplay)) {
