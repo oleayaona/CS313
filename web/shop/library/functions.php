@@ -65,23 +65,24 @@ function buildSummaryDisplay($products, $orders) {
 
 
 function buildCategoriesSelect($categories, $selected) {
-    $display = '<label for="categories">Filter</label><select class="categories">';
-    $display .= "<option><a href='./index.php?action=filter&category=all'>All</a></option>";
+    $display = '<form action="index.php" method="GET">';
+    $display .= '<label for="categories">Filter</label><select name="category" class="categories" onchange="this.form.submit()">';
+    $display .= "<option value='all'>All</option>";
     foreach ($categories as $category) {
         $display .= '<option ';
         if ($selected != null) {
             if ($category['category_name'] == $selected) {
-                $display .= 'selected >';
+                $display .= 'selected ';
             } else {
-                $display .= '>';
+                $display .= ' ';
             }
         } else {
-            $display .= '>';
+            $display .= ' ';
         }
-        $display .= `<a href="./index.php?action=filter&category=` . urlencode($category['category_name']) . `>$category[category_name]</a>`;
-        $display .= '</option>';
+        $display .= `value="$category[category_name]">$category[category_name]</option>`;
     }
     $display .= '</select>';
+    $display .= '<input type="hidden" name="action" value="filter"></form>';
     return $display;
 }
 
