@@ -20,6 +20,18 @@ switch ($action){
     include 'view/browse.php';
     break;
 
+  case 'search':
+    $searchTerm = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+    $productsBySearch = getProductsBySearch($products, $searchTerm);
+    // check if there are results
+    if (count($productsBySearch) != 0) {
+      $productsDisplay = buildProductsDisplay($productsBySearch);
+    } else {
+      $_SESSION['message'] = "Sorry, no matches. :(";
+    }
+    include 'view/browse.php';
+    break;
+
   // Case for when user wants to add an item to cart
   case 'add-to-cart':
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);

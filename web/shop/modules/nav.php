@@ -1,4 +1,11 @@
 <ul class="nav">
+    <li id="search-row">  
+        <form action="./index.php" method="GET">
+            <input type="text" id="search" name="search" placeholder="Search...">
+            <button id="search-btn" type="submit"><img src="./images/search-icon.png" alt="search icon"></button>
+            <input type="hidden" name="action" value="search">
+        </form>
+    </li>
     <li><a href="./index.php">HOME</a></li>
     <li><a href="./index.php?action=shop">SHOP</a></li>
     <li><a href="./index.php?action=cart">CART</a></li>

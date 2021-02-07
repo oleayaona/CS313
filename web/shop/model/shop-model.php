@@ -58,4 +58,16 @@ function removeFromInventory($id) {
     return 0;
 }
 
+function getProductsBySearch($products, $searchTerm) {
+    $results = [];
+    foreach($products as $product) {
+        $name = strtolower($product['prod_name']);
+        $search = strtolower($searchTerm);
+        if( strpos( $name, $search ) !== false) {
+            array_push($results, $product);
+        }
+    }
+    return $results;
+}
+
 ?>

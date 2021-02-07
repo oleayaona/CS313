@@ -26,6 +26,29 @@ main {
     background-color: white;
     min-height: 500px;
 }
+/*----- SEARCH -----*/
+#search-row form {
+    display: flex;
+    margin-top: -10px;
+}
+#search-row button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+#search-row img {
+    width: 35px;
+    height: 35px;
+}
+#search-row input {
+    margin-top: 5px;
+}
+#search {
+    padding: 5px;
+    border: 1px solid #585754;
+    border-radius: 5px;
+}
+/*------------------*/
 .nav {
     list-style: none;
     display: flex;
