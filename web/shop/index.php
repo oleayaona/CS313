@@ -62,7 +62,7 @@ switch ($action){
   // Case for when user wants to add an item to cart
   case 'add-to-cart':
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    $product = getOneProduct($id, $products);
+    $product = getOneProduct($id);
     
     // add item to cart in model
     if ($product != 0) {

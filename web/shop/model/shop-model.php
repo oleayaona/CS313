@@ -27,14 +27,15 @@ function getProductsByCategory($category) {
 }
 
 // Gets one product with matching id
-function getOneProduct($id, $products) {
-    foreach($products as $product) {
-        if ($product['prod_id'] == $id) {
-            return $product;
-        }
-    };
-    // if there's no match, return fail
-    return 0;
+function getOneProduct($id) {
+    $db = dbConnect(); 
+    $sql = ' SELECT * FROM product WHERE prod_id = :id'; 
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':id', $$id, PDO::PARAM_INT);
+    $stmt->execute(); 
+    $product = $stmt->fetch(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $product; 
 }
 
 function getCategories(){
