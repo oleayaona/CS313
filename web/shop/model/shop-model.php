@@ -39,7 +39,7 @@ function getOneProduct($id, $products) {
 
 function getCategories(){
     $db = dbConnect(); 
-    $sql = 'SELECT * FROM category '; 
+    $sql = ' SELECT * FROM category '; 
     $stmt = $db->prepare($sql);
     $stmt->execute(); 
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC); 

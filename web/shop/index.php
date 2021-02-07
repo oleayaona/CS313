@@ -18,6 +18,8 @@ switch ($action){
   case 'shop':
     // Get categories
     $categories = getCategories();
+    echo "<pre>" . print_r($categories, true) . "</pre>";
+    exit;
     $categoriesDisplay = buildCategoriesSelect($categories);
     $productsDisplay = buildProductsDisplay($products);
     include 'view/browse.php';
