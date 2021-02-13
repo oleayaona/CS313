@@ -65,6 +65,8 @@ switch ($action){
   case 'add-to-cart':
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $product = getOneProduct($id);
+    echo "<pre>" . print_r($orders, true) . "</pre>" ;
+    break;
     
     // if item is in stock
     if ($product['prod_stock'] > 0) {
@@ -73,7 +75,7 @@ switch ($action){
       $_SESSION['message'] = "$product[prod_name] successfully added to cart.";
     } else {
       // if not, alert user and return to browse page
-      $_SESSION['message'] = "$product[prod_name] is sold out :(.";
+      $_SESSION['message'] = "$product[prod_name] is sold out. :(";
     }
 
     $productsDisplay = buildProductsDisplay($products);
