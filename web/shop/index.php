@@ -65,9 +65,9 @@ switch ($action){
   case 'add-to-cart':
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $product = getOneProduct($id);
-    echo "<pre>" . print_r($orders, true) . "</pre>" ;
+    echo "<pre>" . print_r($product, true) . "</pre>" ;
     break;
-    
+
     // if item is in stock
     if ($product['prod_stock'] > 0) {
       addtoCart($product);
