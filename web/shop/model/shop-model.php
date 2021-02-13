@@ -33,7 +33,7 @@ function getOneProduct($id) {
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute(); 
-    $product = $stmt->fetch(PDO::FETCH_ASSOC); 
+    $product = $stmt->fetchAll(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
     return $product; 
 }
@@ -80,6 +80,7 @@ function removeFromInventory($id) {
     return 0;
 }
 
+// Get products using search keyword
 function getProductsBySearch($products, $searchTerm) {
     $results = [];
     foreach($products as $product) {
@@ -90,6 +91,80 @@ function getProductsBySearch($products, $searchTerm) {
         }
     }
     return $results;
+}
+
+
+// Checks for existing customer mail
+function checkExistingEmail($customer_email) {
+    $db = dbConnect();
+    $sql = 'SELECT customer_email FROM customer WHERE customer_email = :customer_email';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':customer_email', $customer_email, PDO::PARAM_STR);
+    $stmt->execute();
+    $matchingEmail = $stmt->fetch(PDO::FETCH_NUM);
+    $stmt->closeCursor();
+    // If there's no match return 0 "false", return 1 if there's a match
+    if (empty($matchingEmail)) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+// Adds customer to db
+function addCustomer($customer_email) {
+    $db = dbConnect();
+    $sql = 'INSERT INTO customer (customer_email) VALUES (:customer_email)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':customer_email', $customer_email, PDO::PARAM_STR);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
+
+// Retrieves a customer's info from db
+function getCustomer($customer_email) {
+    $db = dbConnect();
+    $sql = 'SELECT * FROM customer WHERE customer_email = :customer_email';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':customer_email', $customer_email, PDO::PARAM_STR);
+    $stmt->execute(); 
+    $customer = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $customer; 
+}
+
+// Create order in db
+function createOrder($customer_id) {
+    $db = dbConnect();
+    $sql = 'INSERT INTO public.order (customer_id)
+        VALUES (:customer_id)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $order_id = $db->lastInsertId('order_id_seq'); 
+    return $order_id;
+}
+
+// Create recipient in db
+function createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id) {
+    $db = dbConnect();
+    $sql = 'INSERT INTO recipient (fname, lname, phone, address, postal_code, city, country, order_id)
+        VALUES (:fname, :lname, :phone, :address, :postal_code, :city, :country, :order_id)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+    $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);
+    $stmt->bindValue(':phone', $phone, PDO::PARAM_STR);
+    $stmt->bindValue(':address', $address, PDO::PARAM_STR);
+    $stmt->bindValue(':postal_code', $postal_code, PDO::PARAM_INT);
+    $stmt->bindValue(':city', $city, PDO::PARAM_STR);
+    $stmt->bindValue(':country', $country, PDO::PARAM_STR);
+    $stmt->bindValue(':order_id', $order_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $recipient_id = $db->lastInsertId('recipient_id_seq'); 
+    return $recipient_id;
 }
 
 ?>

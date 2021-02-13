@@ -66,21 +66,16 @@ switch ($action){
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $product = getOneProduct($id);
     
-    // add item to cart in model
-    if ($product != 0) {
-      // if successful
+    // if item is in stock
+    if ($product['prod_stock'] > 0) {
       addtoCart($product);
+      // set message for success
+      $_SESSION['message'] = "$product[prod_name] successfully added to cart.";
     } else {
       // if not, alert user and return to browse page
-      $_SESSION['message'] = "$product[prod_name] could not be added to cart.";
-      $productsDisplay = buildProductsDisplay($products);
-      $categories = getCategories();
-      $categoriesDisplay = buildCategoriesSelect($categories, 0);
-      include 'view/browse.php';
+      $_SESSION['message'] = "$product[prod_name] is sold out :(.";
     }
 
-    // set message for success
-    $_SESSION['message'] = "$product[prod_name] successfully added to cart.";
     $productsDisplay = buildProductsDisplay($products);
     $categories = getCategories();
     $categoriesDisplay = buildCategoriesSelect($categories, 0);
@@ -122,17 +117,58 @@ switch ($action){
     break;
 
   case 'complete':
-    $firstName = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_STRING);
-    $lastName = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+    $fname = filter_input(INPUT_POST, 'fname', FILTER_SANITIZE_STRING);
+    $lname = filter_input(INPUT_POST, 'lname', FILTER_SANITIZE_STRING);
     $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT);
     $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_STRING);
-    $postalCode = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT);
+    $postal_code = filter_input(INPUT_POST, 'postal_code', FILTER_SANITIZE_NUMBER_INT);
     $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_STRING);
     $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
 
-    $orders = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
+    // check if customer email is already in db
+    $outcome = checkExistingEmail($email);
+    // if there's no match, add customer to db
+    if ($outcome == 0) {
+      $addCustomerResult = addCustomer($email);
+      // if successful, get customer id
+      if ($addCustomerResult == 1) {
+        $customer = getCustomer($email);
+        $customer_id = $customer['customer_id'];
+      } else {
+        $_SESSION['message'] = "An error occurred. Could not add contact information. :(";
+        $cartDisplay = buildCartDisplay($products, $orders);
+        include 'view/cart.php';
+      }
+    } else {
+      // if there's a match, get customer_id
+      $customer = getCustomer($email);
+      $customer_id = $customer['customer_id'];
+    };
 
-    // Update inventory items (NOT FUNCTIONAL YET)
+    // then create order and get order_id
+    $order_id = createOrder($customer_id);
+    echo "ORDER ID: " . $order_id;
+
+    // create recipient for oder
+    $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
+    echo "RECIPIENT ID: " . $recipient_id;
+    break;
+
+    // add recipient to order
+    //addOrderRecipient($order_id, $recipient_id);
+    
+
+    // add products to order
+    // $products_ordered = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
+    // foreach($products_ordered as $prod_id) {
+    //   addProductOrder($order_id, $prod_id);
+    //   removeFromInventory($order_id);
+    // };
+
+
+    // update product stock
+
     // foreach($orders as $key => $value) {
     //     $outcome = removeFromInventory($key);
     //     if ($outcome) {
@@ -152,13 +188,14 @@ switch ($action){
     // Empty cart after displaying summary
     unset($_SESSION['cart']);
 
-    $name = $firstName . " " . $lastName;
-    $completeAddress = $address . " " . $postalCode . "<br>" . $city . " " . $country;
+    $name = $fname . " " . $lname;
+    $completeAddress = $address . " " . $postal_code . "<br>" . $city . " " . $country;
     include 'view/confirmation.php';
     break;
 
   default:
     include 'view/homepage.php';
+    break;
 }
 
 

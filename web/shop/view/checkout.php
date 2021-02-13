@@ -18,26 +18,31 @@
         <form class="checkout" action="./index.php?action=complete" method="POST">
         <fieldset>
             <h1>Checkout</h1>
-            <p>Contact Information</p>
+            <h3 class="checkout-header">Contact Information</h3>
+            <div class="full">
+                <p>We will send your invoice to this email.</p>
+                <input type="text" id="email" name="email" placeholder="Email" required><br>
+                <label for="email">Email</label>
+            </div>
+            <h3 class="checkout-header">Shipping Details</h3>
             <div class="two-child">
                 <div>
-                    <input type="text" id="first_name" name="first_name" placeholder="First name"
-                        oninput="capitalize('first_name');" required><br>
-                    <label for="first_name">First name</label>
+                    <input type="text" id="fname" name="fname" placeholder="First name"
+                        oninput="capitalize('fname');" required><br>
+                    <label for="fname">First name</label>
                 </div>
                 <div>
-                    <input type="text" id="last_name" name="last_name" placeholder="Last name"
-                        oninput="capitalize('last_name');" required><br>
-                    <label for="last_name">Last name</label>
+                    <input type="text" id="lname" name="lname" placeholder="Last name"
+                        oninput="capitalize('lname');" required><br>
+                    <label for="lname">Last name</label>
                 </div>
             </div>
             <div class="full">
                 <input type="text" id="phone" name="phone" placeholder="Phone" oninput="numberOnly('phone');"  required><br>
                 <label for="phone">Phone</label>
             </div>
-            <p>Shipping Address</p>
             <div class="full">
-                <textarea id="address" name="address" rows="1" placeholder="Address required"></textarea><br>
+                <textarea id="address" name="address" rows="1" placeholder="Address"></textarea><br>
                 <label for="address">Address</label>
             </div>
             <div class="two-child">
