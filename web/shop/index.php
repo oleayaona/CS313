@@ -128,7 +128,6 @@ switch ($action){
 
     // check if customer email is already in db
     $outcome = checkExistingEmail($email);
-    echo "existing email: " . $addCustomerResult;
     // if there's no match, add customer to db
     if ($outcome == 0) {
       $addCustomerResult = addCustomer($email);
@@ -138,7 +137,6 @@ switch ($action){
         $customer = getCustomer($email);
         $customer_id = $customer['customer_id'];
         echo "customer id: " . $customer_id;
-        break;
       } else {
         $_SESSION['message'] = "An error occurred. Could not add contact information. :(";
         $cartDisplay = buildCartDisplay($products, $orders);

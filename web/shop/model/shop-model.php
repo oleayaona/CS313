@@ -104,13 +104,12 @@ function checkExistingEmail($customer_email) {
     $match = $stmt->fetch(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
 
+    // return 0 if false, return 1 is true
     if (empty($match)) {
-        echo "MATCH IS EMPTY";
-    } elseif ($match == null) {
-        echo "MATCH IS NULL";
+        return 0;
+    } else {
+        return 1;
     }
-    exit;
-    return $match; 
 
 }
 
