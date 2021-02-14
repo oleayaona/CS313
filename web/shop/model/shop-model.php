@@ -96,25 +96,21 @@ function getProductsBySearch($products, $searchTerm) {
 
 // Checks for existing customer mail
 function checkExistingEmail($customer_email) {
-    $db = dbConnect();
-    $sql = 'SELECT * FROM customer WHERE customer_email = :customer_email';
+    $db = dbConnect(); 
+    $sql = ' SELECT * FROM customer WHERE customer_email = :customer_email'; 
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':customer_email', $customer_email, PDO::PARAM_STR);
-    echo "STATEMENT";
-    echo $stmt;
-    $stmt->execute();
-    $match = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt->closeCursor();
-    
-    echo "<pre>" . print_r($match, true) . "</pre>" ;
-    echo "AFTER PRINT";
-    exit;
-    // If there's no match return 0 "false", return 1 if there's a match
+    $stmt->execute(); 
+    $match = $stmt->fetch(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+
     if (empty($match)) {
-        return 0;
-    } else {
-        return 1;
+        echo "MATCH IS EMPTY";
+    } elseif ($match == null) {
+        echo "MATCH IS NULL";
     }
+    exit;
+    return $match; 
 
 }
 
