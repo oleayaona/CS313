@@ -196,7 +196,8 @@ function removeFromInventory($prod_id) {
     $stmt->execute();
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
-
+    echo "remove from inventory result: " . $rowsChanged;
+    exit;
     return $rowsChanged;
 }
 
