@@ -93,7 +93,7 @@ function checkExistingEmail($customer_email) {
     $match = $stmt->fetch(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
 
-    // return 0 if false, return 1 is true
+    // return 0 if false, return 1 if true
     if (empty($match)) {
         return 0;
     } else {
@@ -275,5 +275,25 @@ function getProductsByOrder($order_id) {
     
     return $products; 
 }
+
+// Checks if email matches order
+    function authenticateOrderEmail($order_id, $customer_email) {
+        $db = dbConnect(); 
+        $sql = ' SELECT * FROM customer JOIN public.order ON customer.customer_id = public.order.customer_id WHERE public.order.order_id = :order_id AND customer.customer_email = :customer_email'; 
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':customer_email', $customer_email, PDO::PARAM_STR);
+        $stmt->bindValue(':order_id', $order_id, PDO::PARAM_INT);
+        $stmt->execute(); 
+        $match = $stmt->fetch(PDO::FETCH_ASSOC); 
+        $stmt->closeCursor(); 
+
+        // return 0 if email doesn't match order
+        if (empty($match)) {
+            return 0;
+        } else {
+            // return 1 if email is tied to order
+            return 1;
+        }
+    }
 
 ?>

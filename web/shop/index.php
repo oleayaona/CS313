@@ -124,6 +124,16 @@ switch ($action){
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
     $order_id = filter_input(INPUT_POST, 'order_id', FILTER_SANITIZE_NUMBER_INT);
 
+    // authenticate email for oder
+    $authResult = authenticateOrderEmail($order_id, $email);
+
+    // if the email does not match the order, alert user and deliver view-order view
+    if ($authResult != 1) {
+      $_SESSION['message'] = "Sorry, that order doesn't exist. Please check your order number and email and try again.";
+      include 'view/myorder.php';
+      break;
+    }
+
     // get products
     $productsOrdered = getProductsByOrder($order_id);
     $orders = array_count_values(array_column($productsOrdered, 'prod_id'));
