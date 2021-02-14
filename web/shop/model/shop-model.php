@@ -102,6 +102,38 @@ function checkExistingEmail($customer_email) {
 
 }
 
+// Checks for existing recipient in db
+function checkExistingRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country) {
+    $db = dbConnect(); 
+    $sql = ' SELECT * FROM recipient 
+        WHERE fname = :fname 
+        AND lname = :lname 
+        AND phone = :phone 
+        AND address = :address 
+        AND postal_code = :postal_code
+        AND city = :city
+        AND country = :country';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+    $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);
+    $stmt->bindValue(':phone', $phone, PDO::PARAM_STR);
+    $stmt->bindValue(':address', $address, PDO::PARAM_STR);
+    $stmt->bindValue(':postal_code', $postal_code, PDO::PARAM_INT);
+    $stmt->bindValue(':city', $city, PDO::PARAM_STR);
+    $stmt->bindValue(':country', $country, PDO::PARAM_STR);
+    $stmt->execute(); 
+    $match = $stmt->fetch(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+
+    // return 0 if false, return 1 is true
+    if (empty($match)) {
+        return 0;
+    } else {
+        return 1;
+    }
+
+}
+
 // Adds customer to db
 function addCustomer($customer_email) {
     $db = dbConnect();

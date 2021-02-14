@@ -150,8 +150,12 @@ switch ($action){
     // then create order and get order_id
     $order_id = createOrder($customer_id);
 
-    // create recipient for oder
-    $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
+    // check for existing recipient
+    $checkExistingRecipientResult = checkExistingRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country);
+    // if there is no match, create recipient for oder
+    if ($checkExistingRecipientResult == 0) {
+      $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
+    }
 
     // add recipient to order
     $addOrderRecipientResult = addOrderRecipient($order_id, $recipient_id);
