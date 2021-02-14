@@ -67,9 +67,7 @@ switch ($action){
     $product = getOneProduct($id);
 
     // if item is in stock
-    if ($product['prod_stock'] > 0) {
-      echo "HI!";
-      break;
+    if ($product['prod_stock'] != 0) {
       addtoCart($product);
       // set message for success
       $_SESSION['message'] = "$product[prod_name] successfully added to cart.";
