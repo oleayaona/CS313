@@ -143,12 +143,8 @@ function createOrder($customer_id) {
     $sql = 'INSERT INTO public.order (customer_id) VALUES (:customer_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
-    echo "BINDING done!";
     $stmt->execute();
     $order_id = $db->lastInsertId('order_order_id_seq');
-    echo "ORDER ID: " . $order_id;
-    exit;
-
     return $order_id;
 }
 
@@ -168,7 +164,7 @@ function createRecipient($fname, $lname, $phone, $address, $postal_code, $city, 
     $stmt->bindValue(':order_id', $order_id, PDO::PARAM_INT);
     $stmt->execute();
 
-    $recipient_id = $db->lastInsertId('recipient_id_seq'); 
+    $recipient_id = $db->lastInsertId('recipient_recipient_id_seq'); 
     return $recipient_id;
 }
 
