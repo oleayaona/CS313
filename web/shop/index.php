@@ -151,12 +151,9 @@ switch ($action){
 
     // create recipient for oder
     $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
-    echo "RECIPIENT ID: " . $recipient_id;
 
     // add recipient to order
     $addOrderRecipientResult = addOrderRecipient($order_id, $recipient_id);
-    echo "add order recipient result: " . $addOrderRecipientResult;
-    break;
 
     // if order update was successful, attach products to order
     if ($addOrderRecipientResult == 1) {

@@ -145,6 +145,7 @@ function createOrder($customer_id) {
     $stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
     $stmt->execute();
     $order_id = $db->lastInsertId('order_order_id_seq');
+    $stmt->closeCursor();
     return $order_id;
 }
 
@@ -163,20 +164,25 @@ function createRecipient($fname, $lname, $phone, $address, $postal_code, $city, 
     $stmt->bindValue(':country', $country, PDO::PARAM_STR);
     $stmt->bindValue(':order_id', $order_id, PDO::PARAM_INT);
     $stmt->execute();
-
+    
     $recipient_id = $db->lastInsertId('recipient_recipient_id_seq'); 
+    $stmt->closeCursor();
+
     return $recipient_id;
 }
 
 // Attach recipient to order
 function addOrderRecipient($order_id, $recipient_id) {
+    echo "order id: " . $order_id . "& recipient id: " . $recipient_id;
     $db = dbConnect();
     $sql = 'UPDATE public.order SET recipient_id = :recipient_id WHERE order_id = :order_id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':recipient_id', $recipient_id, PDO::PARAM_INT);
     $stmt->bindValue(':order_id', $order_id, PDO::PARAM_INT);
-    $rowsChanged = $stmt->rowCount();
     $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    
     return $rowsChanged;
 }
 
