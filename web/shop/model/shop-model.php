@@ -100,11 +100,13 @@ function checkExistingEmail($customer_email) {
     $sql = 'SELECT * FROM customer WHERE customer_email = :customer_email';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':customer_email', $customer_email, PDO::PARAM_STR);
+    echo $sql;
     $stmt->execute();
     $match = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     
     echo "<pre>" . print_r($match, true) . "</pre>" ;
+    echo "AFTER PRINT";
     exit;
     // If there's no match return 0 "false", return 1 if there's a match
     if (empty($match)) {
@@ -112,6 +114,7 @@ function checkExistingEmail($customer_email) {
     } else {
         return 1;
     }
+
 }
 
 // Adds customer to db
