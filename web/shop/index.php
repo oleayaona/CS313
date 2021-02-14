@@ -127,6 +127,7 @@ switch ($action){
     $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
 
     // check if customer email is already in db
+    echo $email;
     $outcome = checkExistingEmail($email);
     echo "existing email: " . $addCustomerResult;
     // if there's no match, add customer to db
