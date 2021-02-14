@@ -155,6 +155,10 @@ switch ($action){
     // if there is no match, create recipient for oder
     if ($checkExistingRecipientResult == 0) {
       $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
+    } else {
+      // if recipient exists, get id
+      $recipient = getRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country);
+      $recipient_id = $recipient['recipient_id'];
     }
 
     // add recipient to order
