@@ -36,7 +36,7 @@
                     
                     <input type="submit" name="submit" value="VIEW MY ORDER">
                     <!-- To send the name-value pair for login -->
-                    <input type="hidden" name="action" value="view-order">
+                    <input type="hidden" name="action" value="view-order-details">
                 </form>
             </div>
     </main>
