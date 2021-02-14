@@ -33,7 +33,7 @@ function getOneProduct($id) {
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute(); 
-    $product = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $product = $stmt->fetch(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
     return $product; 
 }
@@ -130,7 +130,7 @@ function getCustomer($customer_email) {
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':customer_email', $customer_email, PDO::PARAM_STR);
     $stmt->execute(); 
-    $customer = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $customer = $stmt->fetch(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
     return $customer; 
 }
