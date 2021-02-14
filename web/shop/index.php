@@ -131,6 +131,7 @@ switch ($action){
     // if there's no match, add customer to db
     if ($outcome == 0) {
       $addCustomerResult = addCustomer($email);
+      echo "Customer added!";
       // if successful, get customer id
       if ($addCustomerResult == 1) {
         $customer = getCustomer($email);
@@ -141,6 +142,7 @@ switch ($action){
         include 'view/cart.php';
       }
     } else {
+      echo "Customer already in db!";
       // if there's a match, get customer_id
       $customer = getCustomer($email);
       $customer_id = $customer['customer_id'];
