@@ -170,14 +170,12 @@ switch ($action){
         if ($addProductOrderResult == 1) {
           $removeFromInventoryResult = removeFromInventory($product['prod_id']);
           // if inventory update failed
-          if ($removeFromInventory != 1) {
+          if ($removeFromInventoryResult != 1) {
             $_SESSION['message'] = "An error occurred. Could not update inventory. :(";
             $cartDisplay = buildCartDisplay($products, $orders);
             include 'view/cart.php';
             break;
-          } else {
-            echo "Inventory updated!";
-          };
+          }
         } else {
           $_SESSION['message'] = "An error occurred. Could not add products to order. :(";
           $cartDisplay = buildCartDisplay($products, $orders);
