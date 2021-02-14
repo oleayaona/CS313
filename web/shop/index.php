@@ -166,7 +166,6 @@ switch ($action){
 
       foreach($products_in_cart as $product) {
         $addProductOrderResult = addProductOrder($order_id, $product['prod_id']);
-        echo "product added to order!";
         // if product has been added to order successfully, remove item from inventory
         if ($addProductOrderResult == 1) {
           $removeFromInventoryResult = removeFromInventory($product['prod_id']);
