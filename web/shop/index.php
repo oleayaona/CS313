@@ -137,6 +137,7 @@ switch ($action){
         $customer_id = $customer['customer_id'];
       } else {
         $_SESSION['message'] = "An error occurred. Could not add contact information. :(";
+        $orders = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
         $cartDisplay = buildCartDisplay($products, $orders);
         include 'view/cart.php';
       }
@@ -155,38 +156,39 @@ switch ($action){
     // add recipient to order
     $addOrderRecipientResult = addOrderRecipient($order_id, $recipient_id);
 
+    // Get orders from session
+    $orders = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
+
     // if order update was successful, attach products to order
     if ($addOrderRecipientResult == 1) {
-      $products_ordered = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
-      echo "<pre>" . print_r($products_ordered, true) . "</pre>" ;
-      break;
+      $products_in_cart = $_SESSION['cart'];
+      // echo "<pre>" . print_r($products_ordered, true) . "</pre>" ;
 
-      foreach($products_ordered as $prod_id) {
-        addProductOrder($order_id, $prod_id);
-        // update product stocks
-        removeFromInventory($order_id);
+      foreach($products_in_cart as $product) {
+        $addProductOrderResult = addProductOrder($order_id, $product['prod_id']);
+        echo "product added to order!";
+        // if product has been added to order successfully, remove item from inventory
+        if ($addProductOrderResult == 1) {
+          $removeFromInventoryResult = removeFromInventory($product['prod_id']);
+          // if inventory update failed
+          if ($removeFromInventory != 1) {
+            $_SESSION['message'] = "An error occurred. Could not update inventory. :(";
+            $cartDisplay = buildCartDisplay($products, $orders);
+            include 'view/cart.php';
+          }
+        } else {
+          $_SESSION['message'] = "An error occurred. Could not add products to order. :(";
+          $cartDisplay = buildCartDisplay($products, $orders);
+          include 'view/cart.php';
+        }  
       };
+
     } else {
       $_SESSION['message'] = "An error occurred. Could not add recipient to order. :(";
+      $orders = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
       $cartDisplay = buildCartDisplay($products, $orders);
       include 'view/cart.php';
     }
-
-
-    // update product stock
-
-    // foreach($orders as $key => $value) {
-    //     $outcome = removeFromInventory($key);
-    //     if ($outcome) {
-    //       echo "";
-    //     } else {
-    //       // if update fails, inform user and send back to cart
-    //       $product = getOneProduct($key);
-    //       $_SESSION['message'] = "Purchase not completed. $product[name] is sold out. :(";
-    //       include 'view/cart.php';
-    //       break;
-    //     }
-    // }
 
     // build summary display
     $summaryDisplay = buildSummaryDisplay($products, $orders);

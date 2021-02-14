@@ -69,17 +69,6 @@ function deleteFromCart($id){
       }
 }
 
-function removeFromInventory($id) {
-    GLOBAL $products;
-    foreach($products as $product) {
-        if ($product['id'] == $id) {
-            $product['stock'] -= 1;
-            return 1;
-        }
-    }
-    return 0;
-}
-
 // Get products using search keyword
 function getProductsBySearch($products, $searchTerm) {
     $results = [];
@@ -173,7 +162,6 @@ function createRecipient($fname, $lname, $phone, $address, $postal_code, $city, 
 
 // Attach recipient to order
 function addOrderRecipient($order_id, $recipient_id) {
-    echo "order id: " . $order_id . "& recipient id: " . $recipient_id;
     $db = dbConnect();
     $sql = 'UPDATE public.order SET recipient_id = :recipient_id WHERE order_id = :order_id';
     $stmt = $db->prepare($sql);
@@ -182,20 +170,34 @@ function addOrderRecipient($order_id, $recipient_id) {
     $stmt->execute();
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
-    
+
     return $rowsChanged;
 }
 
 // Binds products to orders
-// function addProductOrder($order_id, $prod_id) {
-//     $db = dbConnect();
-//     $sql = 'INSERT INTO public.order (customer_id) VALUES (:customer_id)';
-//     $stmt = $db->prepare($sql);
-//     $stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
-//     $stmt->execute();
-//     $order_id = $db->lastInsertId('order_order_id_seq');
-//     return $order_id;
-// }
+function addProductOrder($order_id, $prod_id) {
+    $db = dbConnect();
+    $sql = 'INSERT INTO order_item (order_id, prod_id) VALUES (:order_id, :prod_id)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':order_id', $order_id, PDO::PARAM_INT);
+    $stmt->bindValue(':prod_id', $prod_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
 
+// Remove item from inventory
+function removeFromInventory($prod_id) {
+    $db = dbConnect();
+    $sql = 'UPDATE product SET prod_stock -= 1 WHERE prod_id = :prod_id';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':prod_id', $prod_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+
+    return $rowsChanged;
+}
 
 ?>
