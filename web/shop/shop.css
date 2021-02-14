@@ -256,6 +256,9 @@ footer {
 .view-order-container input[type="submit"]:hover {
     background-color: #806957;
 }
+.order-details {
+    padding-top: 40px;
+}
 /*------- CART ----------*/
 .cart-container {
     background-color: white;

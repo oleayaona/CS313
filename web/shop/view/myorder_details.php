@@ -25,7 +25,7 @@
     </header>
 
     <main>
-        <div class="summary">
+        <div class="summary order-details">
             <h2>ORDER #<?php echo $order_id ?> SUMMARY</h2>
                 <h4><?php echo $name ?></h4>
                 <p><?php echo $completeAddress ?></p>
