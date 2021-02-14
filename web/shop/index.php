@@ -155,6 +155,8 @@ switch ($action){
 
     // add recipient to order
     $addOrderRecipientResult = addOrderRecipient($order_id, $recipient_id);
+    echo "add order recipient result: " . $addOrderRecipientResult;
+    break;
 
     // if order update was successful, attach products to order
     if ($addOrderRecipientResult == 1) {
