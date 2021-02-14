@@ -175,6 +175,8 @@ switch ($action){
             $_SESSION['message'] = "An error occurred. Could not update inventory. :(";
             $cartDisplay = buildCartDisplay($products, $orders);
             include 'view/cart.php';
+          } else {
+            echo "Inventory updated!";
           }
         } else {
           $_SESSION['message'] = "An error occurred. Could not add products to order. :(";
