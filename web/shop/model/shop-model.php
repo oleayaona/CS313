@@ -101,8 +101,11 @@ function checkExistingEmail($customer_email) {
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':customer_email', $customer_email, PDO::PARAM_STR);
     $stmt->execute();
-    $matchingEmail = $stmt->fetch(PDO::FETCH_NUM);
+    $matchingEmail = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
+    
+    echo "<pre>" . print_r($matchingEmail, true) . "</pre>" ;
+    exit;
     // If there's no match return 0 "false", return 1 if there's a match
     if (empty($matchingEmail)) {
         return 0;
