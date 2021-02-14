@@ -36,7 +36,7 @@
             <h2>My order</h2>
                 <form action="index.php" method="POST">
                     <label for="order_id">Order Number</label><br>
-                    <input type="text" name="order_id" id="order_id" placeholder="Order Number" oninput="numberOnly('order_id');" <?php if(isset($order)){echo "value='$order'";} ?> required><br>
+                    <input type="text" name="order_id" id="order_id" placeholder="Order Number" oninput="numberOnly('order_id');" <?php if(isset($order_id)){echo "value='$order_id'";} ?> required><br>
                     <label for="order_id">Email</label><br>
                     <p>Please enter the email you used to place the order.</p>
                     <input type="email" name="email" id="email" placeholder="Email" <?php if(isset($email)){echo "value='$email'";} ?> required><br>
