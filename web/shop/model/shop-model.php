@@ -181,7 +181,7 @@ function getCustomer($customer_email) {
     $stmt->execute(); 
     $customer = $stmt->fetch(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
-    return $customer; 
+    return $customer;
 }
 
 // Create order in db
@@ -255,6 +255,25 @@ function removeFromInventory($prod_id) {
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
     return $rowsChanged;
+}
+
+// Returns an array of products in an order by order_id
+function getProductsByOrder($order_id) {
+    $db = dbConnect(); 
+    $sql = ' SELECT * FROM order_item JOIN public.order ON order_item.order_id = public.order.order_id WHERE public.order.order_id = :order_id'; 
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':order_id', $order_id, PDO::PARAM_INT);
+    $stmt->execute(); 
+    $order_items = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+
+    $products = [];
+    foreach ($order_items as $order_item) {
+        $product = getOneProduct($order_item['prod_id']);
+        array_push($products, $product);
+    }
+    
+    return $products; 
 }
 
 ?>

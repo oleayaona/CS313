@@ -116,6 +116,22 @@ switch ($action){
     include 'view/checkout.php';
     break;
 
+  case 'view-order':
+    include 'view/myorder.php';
+    break;
+
+  case 'view-order-details':
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+    $order_id = filter_input(INPUT_POST, 'order_id', FILTER_SANITIZE_NUMBER_INT);
+
+    // get products
+    $productsOrdered = getProductsByOrder($order_id);
+    $orders = array_count_values(array_column($productsOrdered, 'prod_id'));
+    // build summary display
+    $summaryDisplay = buildSummaryDisplay($products, $orders);
+    include 'view/myorder_details.php';
+    break;
+
   case 'complete':
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
     $fname = filter_input(INPUT_POST, 'fname', FILTER_SANITIZE_STRING);
@@ -150,16 +166,18 @@ switch ($action){
     // then create order and get order_id
     $order_id = createOrder($customer_id);
 
-    // check for existing recipient
-    $checkExistingRecipientResult = checkExistingRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country);
-    // if there is no match, create recipient for oder
-    if ($checkExistingRecipientResult == 0) {
-      $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
-    } else {
-      // if recipient exists, get id
-      $recipient = getRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country);
-      $recipient_id = $recipient['recipient_id'];
-    }
+    // create recipie for oder
+    $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
+    // // check for existing recipient
+    // $checkExistingRecipientResult = checkExistingRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country);
+    // // if there is no match, create recipient for oder
+    // if ($checkExistingRecipientResult == 0) {
+    //   $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
+    // } else {
+    //   // if recipient exists, get id
+    //   $recipient = getRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country);
+    //   $recipient_id = $recipient['recipient_id'];
+    // }
 
     // add recipient to order
     $addOrderRecipientResult = addOrderRecipient($order_id, $recipient_id);

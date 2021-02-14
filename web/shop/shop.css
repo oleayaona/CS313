@@ -218,6 +218,44 @@ footer {
     border: 1px solid #474747;
     color: #474747;
 }
+/*--------- VIEW ORDER ----------*/
+.view-order-container {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    padding: 40px;
+}
+.view-order-container p {
+    margin: 5px;
+    font-size: 0.8em;
+    font-weight: 300;
+}
+.view-order-container label {
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+.view-order-container form input {
+    width: 35%;
+    border-radius: 5px;
+    padding: 10px 10px;
+    border: 1px solid #9ea1a1;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 20px;
+}
+.view-order-container input[type="submit"] {
+    background-color: #9e826d;
+    color: white;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%;
+    text-align: center;
+}
+.view-order-container input[type="submit"]:hover {
+    background-color: #806957;
+}
 /*------- CART ----------*/
 .cart-container {
     background-color: white;

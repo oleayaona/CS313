@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purchase Complete!</title>
+    <title>My Order</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Open+Sans:wght@300;400&family=Playfair+Display&display=swap"
         rel="stylesheet">
@@ -25,25 +25,20 @@
     </header>
 
     <main>
-        <div class="confirmation">
-            <img id="confirmation-check" src="./images/checkmark-icon.png" alt="checkmark icon">
-            <h3>Order complete!</h3>
-            <p>Your invoice has been sent to <?php echo $email ?>. Your order is being processed and will be shipped within 3 business days. Thank you!</p>
-            <a href="./index.php?action=shop"><h3>CONTINUE SHOPPING</h3></a>
-        </div>
-        
-        <div class="summary">
-            <h2>SUMMARY</h2>
-            <h2>ORDER #<?php echo $order_id ?></h2>
-                <h4><?php echo $name ?></h4>
-                <p><?php echo $completeAddress ?></p>
-                <p><?php echo $phone ?></p>
-                <?php
-                    if (isset($summaryDisplay)) {
-                        echo $summaryDisplay;
-                    }
-                ?>
-        </div>
+        <div class="view-order-container">
+            <h2>My order</h2>
+                <form action="index.php" method="POST">
+                    <label for="order_id">Order Number</label><br>
+                    <input type="text" name="order_id" id="order_id" placeholder="Order Number" oninput="numberOnly('order_id');" required><br>
+                    <label for="order_id">Email</label><br>
+                    <p>Please enter the email you used to place the order.</p>
+                    <input type="email" name="email" id="email" placeholder="Email" required><br>
+                    
+                    <input type="submit" name="submit" value="VIEW MY ORDER">
+                    <!-- To send the name-value pair for login -->
+                    <input type="hidden" name="action" value="view-order">
+                </form>
+            </div>
     </main>
 
     <footer>

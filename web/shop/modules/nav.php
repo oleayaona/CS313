@@ -8,6 +8,7 @@
     </li>
     <li><a href="./index.php">HOME</a></li>
     <li><a href="./index.php?action=shop">SHOP</a></li>
+    <li><a href="./index.php?action=view-order">MY ORDER</a></li>
     <li><a href="./index.php?action=cart">CART</a></li>
     <li>
         <a id="cart-icon" href="./index.php?action=cart">
