@@ -140,14 +140,13 @@ function getCustomer($customer_email) {
 // Create order in db
 function createOrder($customer_id) {
     $db = dbConnect();
-    $sql = 'INSERT INTO public.order (customer_id)
-        VALUES (:customer_id)';
+    $sql = 'INSERT INTO public.order (customer_id) VALUES (:customer_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
-    echo $stmt;
+    echo "BINDING done!";
     $stmt->execute();
     $order_id = $db->lastInsertId('order_id_seq');
-    echo $order_id;
+    echo "ORDER ID: " . $order_id;
     exit;
 
     return $order_id;
