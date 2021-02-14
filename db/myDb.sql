@@ -38,9 +38,9 @@ CREATE TABLE product
 CREATE TABLE public.order
 (
 	order_id SERIAL NOT NULL PRIMARY KEY,
-	order_date TIMESTAMP NOT NULL,
+	order_date TIMESTAMP NOT NULL DEFAUL NOW (),
 	customer_id INT NOT NULL REFERENCES public.customer(customer_id),
-	recipient_id INT NOT NULL REFERENCES public.recipient(recipient_id),
+	recipient_id INT REFERENCES public.recipient(recipient_id),
 	is_complete BOOLEAN NOT NULL DEFAULT false
 );
 
