@@ -190,7 +190,7 @@ function addProductOrder($order_id, $prod_id) {
 // Remove item from inventory
 function removeFromInventory($prod_id) {
     $db = dbConnect();
-    $sql = 'UPDATE product SET prod_stock -= 1 WHERE prod_id = :prod_id';
+    $sql = 'UPDATE product SET prod_stock = prod_stock - 1 WHERE prod_id = :prod_id';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':prod_id', $prod_id, PDO::PARAM_INT);
     $stmt->execute();
