@@ -152,18 +152,26 @@ switch ($action){
     // create recipient for oder
     $recipient_id = createRecipient($fname, $lname, $phone, $address, $postal_code, $city, $country, $order_id);
     echo "RECIPIENT ID: " . $recipient_id;
-    break;
 
     // add recipient to order
-    //addOrderRecipient($order_id, $recipient_id);
-    
+    $addOrderRecipientResult = addOrderRecipient($order_id, $recipient_id);
 
-    // add products to order
-    // $products_ordered = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
-    // foreach($products_ordered as $prod_id) {
-    //   addProductOrder($order_id, $prod_id);
-    //   removeFromInventory($order_id);
-    // };
+    // if order update was successful, attach products to order
+    if ($addOrderRecipientResult == 1) {
+      $products_ordered = array_count_values(array_column($_SESSION['cart'], 'prod_id'));
+      echo "<pre>" . print_r($products_ordered, true) . "</pre>" ;
+      break;
+
+      foreach($products_ordered as $prod_id) {
+        addProductOrder($order_id, $prod_id);
+        // update product stocks
+        removeFromInventory($order_id);
+      };
+    } else {
+      $_SESSION['message'] = "An error occurred. Could not add recipient to order. :(";
+      $cartDisplay = buildCartDisplay($products, $orders);
+      include 'view/cart.php';
+    }
 
 
     // update product stock

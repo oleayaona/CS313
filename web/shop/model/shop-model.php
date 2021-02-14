@@ -168,4 +168,28 @@ function createRecipient($fname, $lname, $phone, $address, $postal_code, $city, 
     return $recipient_id;
 }
 
+// Attach recipient to order
+function addOrderRecipient($order_id, $recipient_id) {
+    $db = dbConnect();
+    $sql = 'UPDATE public.order SET recipient_id = :recipient_id WHERE order_id = :order_id';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':recipient_id', $recipient_id, PDO::PARAM_INT);
+    $stmt->bindValue(':order_id', $order_id, PDO::PARAM_INT);
+    $rowsChanged = $stmt->rowCount();
+    $stmt->execute();
+    return $rowsChanged;
+}
+
+// Binds products to orders
+// function addProductOrder($order_id, $prod_id) {
+//     $db = dbConnect();
+//     $sql = 'INSERT INTO public.order (customer_id) VALUES (:customer_id)';
+//     $stmt = $db->prepare($sql);
+//     $stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
+//     $stmt->execute();
+//     $order_id = $db->lastInsertId('order_order_id_seq');
+//     return $order_id;
+// }
+
+
 ?>
