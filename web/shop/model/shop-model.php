@@ -7,7 +7,7 @@ if (!isset($_SESSION['cart'])) {
 // Gets all products in database
 function getProducts(){
     $db = dbConnect(); 
-    $sql = ' SELECT * FROM product '; 
+    $sql = ' SELECT * FROM product'; 
     $stmt = $db->prepare($sql);
     $stmt->execute(); 
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC); 
