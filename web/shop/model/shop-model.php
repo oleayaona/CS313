@@ -144,8 +144,12 @@ function createOrder($customer_id) {
         VALUES (:customer_id)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
+    echo $stmt;
     $stmt->execute();
-    $order_id = $db->lastInsertId('order_id_seq'); 
+    $order_id = $db->lastInsertId('order_id_seq');
+    echo $order_id;
+    exit;
+
     return $order_id;
 }
 
