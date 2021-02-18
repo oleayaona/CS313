@@ -6,14 +6,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     // no username match
     if (empty($user)) {
         echo "No user amtch";
-        include 'sign_up.php';
+        include 'sign_in.php';
         die();
     }
 
     $hashCheck = password_verify($password, $user['password']);
     if (!$hashCheck) {
         echo "Password no match";
-        include 'sign_up.php';
+        include 'sign_in.php';
         // header('Location: /week_07/sign_up.php');
         die();
     } else {
@@ -22,7 +22,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 } else {
     echo "Missing input";
-    include 'sign_up.php';
+    include 'sign_in.php';
     // header('Location: /week_07/sign_up.php');
     die();
 }
@@ -31,7 +31,7 @@ if (isset($_SESSION['username'])) {
     $user = $_SESSION['username'];
 } else {
     echo "No user";
-    include 'sign_up.php';
+    include 'sign_in.php';
     die();
 }
 
