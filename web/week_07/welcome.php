@@ -2,7 +2,6 @@
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-    echo "Var check!";
     $user = getUser($username);
 
     if (empty($user)) {
@@ -29,13 +28,13 @@ if (isset($_SESSION['username'])) {
 
 function getUser($username) {
     $db = dbConnect();
-    echo "CONNECTED!";
     $sql = 'SELECT * FROM user WHERE username = :username';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':username', $username, PDO::PARAM_STR);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC); 
     $stmt->closeCursor();
+    echo "</pre>" . print_r($user, true) . "</pre>";
     return $user;
 }
 
