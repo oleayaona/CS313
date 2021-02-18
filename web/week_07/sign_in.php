@@ -1,8 +1,11 @@
 <?php
+echo $_POST['username'] . " " . $_POST['password'];
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    echo $_POST['username'] . " " . $_POST['password'];
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    echo $username . " " . $hashedPassword;
     registerUser($username, $hashedPassword); 
     echo "REGISTERED!";
 } else {
@@ -11,6 +14,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 function registerUser($username, $password) {
     $db = dbConnect();
+    echo "CONNECTED!";
     $sql = 'INSERT INTO public.user (username, password) VALUES (:username, :password)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':username', $username, PDO::PARAM_STR);
