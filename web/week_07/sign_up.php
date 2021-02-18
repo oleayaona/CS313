@@ -12,8 +12,8 @@
     <main>
         <form action="sign_in.php" method="POST">
             <h1>SIGN UP</h1>
-            <input type="text" name="username" placeholder="Username">
-            <input type="text" name="password" placeholder="Password" >
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="text" name="password" id="password" placeholder="Password" >
             <input type="submit" name="submit" value="SIGN IN">
         </form>
 
