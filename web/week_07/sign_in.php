@@ -1,13 +1,12 @@
 <?php
-echo $_POST['username'] . $_POST['password'];
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     registerUser($username, $hashedPassword); 
+    echo "REGISTERED!";
 } else {
     header('Location: /week_07/sign_up.php');
-    die();
 }
 
 function registerUser($username, $password) {
@@ -19,7 +18,6 @@ function registerUser($username, $password) {
     $stmt->execute();
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
-    return $rowsChanged;
 }
 
 ?><!DOCTYPE html>
