@@ -11,7 +11,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }
 
     $hashCheck = password_verify($password, $user['password']);
-    echo "hascheck: " . $hashCheck;
     if (!$hashCheck) {
         echo "Password no match";
         include 'sign_up.php';
@@ -30,7 +29,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 if (isset($_SESSION['username'])) {
     $user = $_SESSION['username'];
-    echo $user;
 } else {
     echo "No user";
     include 'sign_up.php';
@@ -39,7 +37,6 @@ if (isset($_SESSION['username'])) {
 
 function getUser($username) {
     $db = dbConnect();
-    echo "Connected!";
     $sql = 'SELECT * FROM public.user WHERE username = :username';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':username', $username, PDO::PARAM_STR);
@@ -92,7 +89,7 @@ function dbConnect(){
 
 <body>
     <main>
-        <h1>Welcome, <?php $user?></h1>
+        <h1>Welcome, <?php echo $user?></h1>
     </main>
 </body>
 
