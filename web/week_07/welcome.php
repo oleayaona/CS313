@@ -7,17 +7,17 @@ if (isset($POST['username']) && isset($POST['password'])) {
     $user = getUser($username);
 
     if (empty($user)) {
-        header('Location: /web/week_07/sign_in.php');
+        header('Location: /week_07/sign_in.php');
         die();
     }
 } else {
-    header('Location: /web/week_07/sign_up.php');
+    header('Location: /week_07/sign_up.php');
     die();
 }
 
 $hashCheck = password_verify($password, $user['password']);
 if (!$hashCheck) {
-    header('Location: /web/week_07/sign_up.php');
+    header('Location: /week_07/sign_up.php');
     die();
 }
 

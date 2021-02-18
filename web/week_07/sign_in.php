@@ -6,7 +6,7 @@ if (isset($POST['username']) && isset($POST['password'])) {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     registerUser($username, $hashedPassword); 
 } else {
-    header('Location: /web/week_07/sign_up.php');
+    header('Location: /week_07/sign_up.php');
     die();
 }
 
