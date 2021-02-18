@@ -28,7 +28,7 @@ if (isset($_SESSION['username'])) {
 
 function getUser($username) {
     $db = dbConnect();
-    $sql = 'SELECT * FROM user WHERE username = :username';
+    $sql = 'SELECT * FROM public.user WHERE username = :username';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':username', $username, PDO::PARAM_STR);
     $stmt->execute();
