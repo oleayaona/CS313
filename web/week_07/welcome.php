@@ -30,8 +30,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 if (isset($_SESSION['username'])) {
     $user = $_SESSION['username'];
+    echo $user;
 } else {
-    echo "No name";
+    echo "No user";
     include 'sign_up.php';
     die();
 }
