@@ -17,6 +17,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         include 'sign_up.php';
         // header('Location: /week_07/sign_up.php');
         die();
+    } else {
+        $_SESSION['username'] = $user['username'];
     }
 
 } else {
@@ -29,7 +31,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 if (isset($_SESSION['username'])) {
     $user = $_SESSION['username'];
 } else {
-    header('Location: /week_07/sign_up.php');
+    echo "No name";
+    include 'sign_up.php';
     die();
 }
 
