@@ -1,5 +1,5 @@
 <?php
-if (isset($POST['username']) && isset($POST['password'])) {
+if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
@@ -20,8 +20,8 @@ if (!$hashCheck) {
     die();
 }
 
-if (isset($SESSION['username'])) {
-    $user = $SESSION['username'];
+if (isset($_SESSION['username'])) {
+    $user = $_SESSION['username'];
 } else {
     header('Location: /web/week_07/sign_up.php');
     die();

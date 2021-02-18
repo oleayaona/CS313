@@ -1,6 +1,6 @@
 <?php
-echo $POST['username'] . $POST['password'];
-if (isset($POST['username']) && isset($POST['password'])) {
+echo $_POST['username'] . $_POST['password'];
+if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
