@@ -16,7 +16,6 @@ function registerUser($username, $password) {
     $stmt->bindValue(':username', $username, PDO::PARAM_STR);
     $stmt->bindValue(':password', $password, PDO::PARAM_STR);
     $stmt->execute();
-    $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
 }
 
