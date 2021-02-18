@@ -46,7 +46,6 @@ function getUser($username) {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC); 
     $stmt->closeCursor();
-    echo "</pre>" . print_r($user, true) . "</pre>";
     return $user;
 }
 
