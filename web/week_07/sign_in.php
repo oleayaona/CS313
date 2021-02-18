@@ -11,7 +11,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 function registerUser($username, $password) {
     $db = dbConnect();
-    $sql = 'INSERT INTO user (username, password) VALUES (:username, :password)';
+    $sql = 'INSERT INTO public.user (username, password) VALUES (:username, :password)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':username', $username, PDO::PARAM_STR);
     $stmt->bindValue(':password', $password, PDO::PARAM_STR);
