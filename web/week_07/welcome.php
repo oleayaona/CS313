@@ -5,19 +5,24 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $user = getUser($username);
     // no username match
     if (empty($user)) {
-        header('Location: /week_07/sign_in.php');
+        echo "No user amtch";
+        include 'sign_up.php';
         die();
     }
 
     $hashCheck = password_verify($password, $user['password']);
     echo "hascheck: " . $hashCheck;
     if (!$hashCheck) {
-        header('Location: /week_07/sign_up.php');
+        echo "Password no match";
+        include 'sign_up.php';
+        // header('Location: /week_07/sign_up.php');
         die();
     }
 
 } else {
-    header('Location: /week_07/sign_up.php');
+    echo "Missing input";
+    include 'sign_up.php';
+    // header('Location: /week_07/sign_up.php');
     die();
 }
 
