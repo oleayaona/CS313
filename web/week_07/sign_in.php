@@ -1,5 +1,5 @@
 <?php
-if (!empty($_POST['username']) && !empty($_POST['password'])) {
+if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['repeat'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
