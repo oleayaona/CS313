@@ -3,18 +3,20 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     $user = getUser($username);
-
+    // no username match
     if (empty($user)) {
         header('Location: /week_07/sign_in.php');
         die();
     }
-} else {
-    header('Location: /week_07/sign_up.php');
-    die();
-}
 
-$hashCheck = password_verify($password, $user['password']);
-if (!$hashCheck) {
+    $hashCheck = password_verify($password, $user['password']);
+    echo "hascheck: " . $hashCheck;
+    if (!$hashCheck) {
+        header('Location: /week_07/sign_up.php');
+        die();
+    }
+
+} else {
     header('Location: /week_07/sign_up.php');
     die();
 }
@@ -22,12 +24,13 @@ if (!$hashCheck) {
 if (isset($_SESSION['username'])) {
     $user = $_SESSION['username'];
 } else {
-    header('Location: /web/week_07/sign_up.php');
+    header('Location: /week_07/sign_up.php');
     die();
 }
 
 function getUser($username) {
     $db = dbConnect();
+    echo "Connected!";
     $sql = 'SELECT * FROM public.user WHERE username = :username';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':username', $username, PDO::PARAM_STR);
