@@ -54,7 +54,7 @@
     </footer>
 <script>
     var jsonData = <?php echo $json; ?>;
-    var d = "'" +  jsonData.slice(1, -1) + "'";
+    var d = "['" +  jsonData.slice(1, -1) + "']";
     var prodData = JSON.parse(d);
     console.log(prodData);
 
