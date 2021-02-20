@@ -53,7 +53,7 @@
         <p>Olea Yaona | BYU-Idaho | CSE-341</p>
     </footer>
 <script>
-    var data = '<?= $json; ?>';
+    var data = `<?= $json; ?>`;
     var jsonData = data.slice(1, -1);
     var prodData = JSON.parse(jsonData);
     console.log(prodData);
@@ -61,14 +61,14 @@
     // function buildProductsDisplay() {
     //     var display = '<ul class="products">';
     //     for (i in $json) {
-    //     $display .= "<li><a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'>";
-    //     $display .= "<img class='product-img' src='./images/$product[prod_img]' alt='$product[prod_name]'></a>";
-    //     $display .= "<a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'><h2>" . strtoupper($product['prod_name']) . "</h2></a>";
-    //     $display .= "<h4>&#8369;". number_format($product['prod_price'], 2) ."</h4>";
-    //     $display .= "<a href='./index.php?action=add-to-cart&id=" . urlencode($product['prod_id']) . "'><h5 class='add-cart'>ADD TO CART</h3></a>";
-    //     $display .= '</li>';
-    //     }
-    //     $display .= '</ul>';
+    //         display += "<li><a href='./index.php?action=product-info&id=" + json[i].prod_id + "'>";
+    //         display += "<img class='product-img' src='./images/$product[prod_img]' alt='$product[prod_name]'></a>";
+    //         display += "<a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'><h2>" . strtoupper($product['prod_name']) . "</h2></a>";
+    //         display += "<h4>&#8369;". number_format($product['prod_price'], 2) ."</h4>";
+    //         display += "<a href='./index.php?action=add-to-cart&id=" . urlencode($product['prod_id']) . "'><h5 class='add-cart'>ADD TO CART</h3></a>";
+    //         display += '</li>';
+    //         }
+    //     $display += '</ul>';
     // }
 
     // function showProducts() {
