@@ -52,8 +52,9 @@
         <p>&#169; Homey. All rights reserved.</p>
         <p>Olea Yaona | BYU-Idaho | CSE-341</p>
     </footer>
-
+    <?php echo "<pre>" . print_r($json, true) . "</pre>"; ?>
 <script>
+    
     var jsonData = <?= $json; ?>;
     var prodData = JSON.parse(jsonData);
     console.log(prodData);
