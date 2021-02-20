@@ -10,7 +10,7 @@ function getProducts(){
     $sql = ' SELECT * FROM product'; 
     $stmt = $db->prepare($sql);
     $stmt->execute(); 
-    $products = $stmt->fetch(PDO::FETCH_ASSOC); 
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC); 
     $stmt->closeCursor(); 
     return $products; 
 }

@@ -56,7 +56,7 @@
 <script>
     
     var jsonData = <?= $json; ?>;
-    var prodData = JSON.parse(jsonData);
+    var prodData = JSON.parse(jsonData[0]);
     console.log(prodData);
 
 
