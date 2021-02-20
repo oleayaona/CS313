@@ -54,65 +54,79 @@
     </footer>
 
 <script>
-    var prodData = JSON.parse('<?= $json; ?>');
+    var jsonData = <?= $json; ?>;
+    var prodData = JSON.parse(jsonData);
     console.log(prodData);
+
+
+
     
-    function getProductsInfo() {
+    // function buildProductsDisplay() {
+    //     var display = '<ul class="products">';
+    //     for (i in $json) {
+    //     $display .= "<li><a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'>";
+    //     $display .= "<img class='product-img' src='./images/$product[prod_img]' alt='$product[prod_name]'></a>";
+    //     $display .= "<a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'><h2>" . strtoupper($product['prod_name']) . "</h2></a>";
+    //     $display .= "<h4>&#8369;". number_format($product['prod_price'], 2) ."</h4>";
+    //     $display .= "<a href='./index.php?action=add-to-cart&id=" . urlencode($product['prod_id']) . "'><h5 class='add-cart'>ADD TO CART</h3></a>";
+    //     $display .= '</li>';
+    //     }
+    //     $display .= '</ul>';
+    // }
 
-    }
-    function showProducts() {
+    // function showProducts() {
 
-    };
-    /*---Loads a text file given the url and function------*/
-    function loadDoc(url, cFunction) {
-        var xhttp;
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                cFunction(this);
-            }
-        };
-        xhttp.open("GET", url, true);
-        xhttp.send();
-    }
+    // };
+    // /*---Loads a text file given the url and function------*/
+    // function loadDoc(url, cFunction) {
+    //     var xhttp;
+    //     xhttp = new XMLHttpRequest();
+    //     xhttp.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             cFunction(this);
+    //         }
+    //     };
+    //     xhttp.open("GET", url, true);
+    //     xhttp.send();
+    // }
 
-    function myFunction(xhttp) {
-        document.getElementById("data").innerHTML =
-            xhttp.responseText;
-    }
+    // function myFunction(xhttp) {
+    //     document.getElementById("data").innerHTML =
+    //         xhttp.responseText;
+    // }
 
-    function readJSON() {
-        const input = document.getElementById("input").value;
+    // function readJSON() {
+    //     const input = document.getElementById("input").value;
 
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var myArr = JSON.parse(this.responseText);
-                formatJSON(myArr);
-            }
-        };
-        xmlhttp.open("GET", input, true);
-        xmlhttp.send();
-    }
+    //     var xmlhttp = new XMLHttpRequest();
+    //     xmlhttp.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             var myArr = JSON.parse(this.responseText);
+    //             formatJSON(myArr);
+    //         }
+    //     };
+    //     xmlhttp.open("GET", input, true);
+    //     xmlhttp.send();
+    // }
 
-    function formatJSON(json) {
-        var i;
-        var table = "<tr><th>First name</th><th>Last name</th><th>Address</th><th>Major</th><th>GPA</th></tr>";
-        for (i in json.students) {
-            table += "<tr><td>" +
-                json.students[i].first +
-                "</td><td>" +
-                json.students[i].last +
-                "</td><td>" +
-                json.students[i].address.city + ", " + json.students[i].address.state + " " + json.students[i].address.zip +
-                "</td><td>" +
-                json.students[i].major +
-                "</td><td>" +
-                json.students[i].gpa +
-                "</td></tr>";
-        }
-        document.getElementById("json_data").innerHTML = table;
-    }
+    // function formatJSON(json) {
+    //     var i;
+    //     var table = "<tr><th>First name</th><th>Last name</th><th>Address</th><th>Major</th><th>GPA</th></tr>";
+    //     for (i in json.students) {
+    //         table += "<tr><td>" +
+    //             json.students[i].first +
+    //             "</td><td>" +
+    //             json.students[i].last +
+    //             "</td><td>" +
+    //             json.students[i].address.city + ", " + json.students[i].address.state + " " + json.students[i].address.zip +
+    //             "</td><td>" +
+    //             json.students[i].major +
+    //             "</td><td>" +
+    //             json.students[i].gpa +
+    //             "</td></tr>";
+    //     }
+    //     document.getElementById("json_data").innerHTML = table;
+    // }
 </script>
 </body>
 
