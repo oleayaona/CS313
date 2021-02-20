@@ -53,7 +53,8 @@
         <p>Olea Yaona | BYU-Idaho | CSE-341</p>
     </footer>
 <script>
-    var jsonData = `<?= $json; ?>`;
+    var jsonData = `<?php echo $json; ?>`;
+    console.log(jsonData);
     var prodData = JSON.parse(jsonData[0]);
     console.log(prodData);
 
