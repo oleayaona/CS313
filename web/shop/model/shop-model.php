@@ -15,6 +15,7 @@ function getProducts(){
     return $products; 
 }
 
+// Gets products by given category
 function getProductsByCategory($category) {
     $db = dbConnect(); 
     $sql = ' SELECT * FROM product WHERE prod_category = :category'; 
@@ -38,6 +39,7 @@ function getOneProduct($id) {
     return $product; 
 }
 
+// Gets product categories from db
 function getCategories(){
     $db = dbConnect(); 
     $sql = ' SELECT * FROM category '; 
@@ -48,10 +50,12 @@ function getCategories(){
     return $results;
 }
 
+// Gets cart items from session
 function getCartItems() {
     return $_SESSION['cart'];
 }
 
+// Adds product to cart
 function addToCart($product) {
     $_SESSION['cart'][] = $product;
 }

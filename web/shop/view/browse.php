@@ -32,13 +32,13 @@
                 }
         ?>
         </h3>
-        <?php 
+        <div class="products-container">
+            <h2>PRODUCTS</h2>
+            <?php 
                 if (isset($categoriesDisplay)) {
                     echo $categoriesDisplay;
                 }
             ?>
-        <div class="products-container">
-            <h2>PRODUCTS</h2>
             <hr id="products-hr">
             <?php 
                 if (isset($productsDisplay)) {

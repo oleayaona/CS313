@@ -28,7 +28,7 @@ function buildCartDisplay($products, $orders) {
                 $display .= "<td><img class='product-img' src='./images/$product[prod_img]' alt='$product[prod_name]'></td>";
                 $display .= "<td>
                                 <h3>$product[prod_name]</h3>
-                                <p>$product[prod_stock] items left</p>
+                                <p class='items-left'>$product[prod_stock] items left</p>
                                 <a href='./index.php?action=delete-from-cart&prod_id=" . urlencode($product['prod_id']) . "'><p>REMOVE</p></a>
                             </td>";
                 $display .= "<td><p>&#8369;" . number_format($product['prod_price'], 2) . "</p></td>";
@@ -43,6 +43,7 @@ function buildCartDisplay($products, $orders) {
     return $display;
 }
 
+// Build display for order summary
 function buildSummaryDisplay($products, $orders) {
     $total = 0;
     $display = '<ul class="summary-list">';
@@ -63,10 +64,10 @@ function buildSummaryDisplay($products, $orders) {
     return $display;
 }
 
-
+// Builds a select element for product categories in the db
 function buildCategoriesSelect($categories, $selected) {
     $display = '<form action="index.php" method="GET" class="categories">';
-    $display .= '<label for="categories">Filter </label><select name="category" onchange="this.form.submit()">';
+    $display .= '<label for="categories">Filter: </label><select name="category" onchange="this.form.submit()">';
     $display .= "<option value='0'>All</option>";
     foreach ($categories as $category) {
         if ($category['category_id'] == $selected) {
@@ -80,11 +81,13 @@ function buildCategoriesSelect($categories, $selected) {
     return $display;
 }
 
+// Builds display for product info page
 function buildProductInfoDisplay($product) {
     $display = '<section class="info-display">';
     $display .= "<img src='./images/$product[prod_img]' alt='$product[prod_name]'>";
     $display .= "<div><h2>$product[prod_name]</h2>";
     $display .= '<p>&#8369;'. number_format($product['prod_price'], 2) ."</p><p>$product[prod_description]</p>";
+    $display .= "<p class='items-left'>$product[prod_stock] items left</p>";
     $display .= '<a href="./index.php?action=add-to-cart&id=' . urlencode($product['prod_id']) . '"><h5 class="add-cart">ADD TO CART</h3></a>';
     $display .= '</div> </section>';
     return $display;

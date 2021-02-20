@@ -106,11 +106,3 @@ VALUES (
 	2
 );
 
-
-
-CREATE TABLE public.user
-(
-	id SERIAL NOT NULL PRIMARY KEY,
-	username VARCHAR(45) NOT NULL,
-	password VARCHAR(200) NOT NULL
-);
