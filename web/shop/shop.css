@@ -218,9 +218,9 @@ footer {
     border: 1px solid #474747;
     color: #474747;
 }
-.info-display .items-left {
+.items-left {
     font-size: 0.8em;
-    color: rgb(202, 120, 120);
+    color: rgb(187, 119, 119);
 }
 /*--------- VIEW ORDER ----------*/
 .view-order-container {
