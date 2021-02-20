@@ -20,6 +20,7 @@ switch ($action){
     $categories = getCategories();
     $categoriesDisplay = buildCategoriesSelect($categories, 0);
     $productsDisplay = buildProductsDisplay($products);
+    $json = json_encode($products);
     include 'view/browse.php';
     break;
 

@@ -52,6 +52,68 @@
         <p>&#169; Homey. All rights reserved.</p>
         <p>Olea Yaona | BYU-Idaho | CSE-341</p>
     </footer>
+
+<script>
+    var prodData = JSON.parse('<?= $json; ?>');
+    console.log(prodData);
+    
+    function getProductsInfo() {
+
+    }
+    function showProducts() {
+
+    };
+    /*---Loads a text file given the url and function------*/
+    function loadDoc(url, cFunction) {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                cFunction(this);
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+
+    function myFunction(xhttp) {
+        document.getElementById("data").innerHTML =
+            xhttp.responseText;
+    }
+
+    function readJSON() {
+        const input = document.getElementById("input").value;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var myArr = JSON.parse(this.responseText);
+                formatJSON(myArr);
+            }
+        };
+        xmlhttp.open("GET", input, true);
+        xmlhttp.send();
+    }
+
+    function formatJSON(json) {
+        var i;
+        var table = "<tr><th>First name</th><th>Last name</th><th>Address</th><th>Major</th><th>GPA</th></tr>";
+        for (i in json.students) {
+            table += "<tr><td>" +
+                json.students[i].first +
+                "</td><td>" +
+                json.students[i].last +
+                "</td><td>" +
+                json.students[i].address.city + ", " + json.students[i].address.state + " " + json.students[i].address.zip +
+                "</td><td>" +
+                json.students[i].major +
+                "</td><td>" +
+                json.students[i].gpa +
+                "</td></tr>";
+        }
+        document.getElementById("json_data").innerHTML = table;
+    }
+</script>
 </body>
 
 </html><?php unset($_SESSION['message']) ?>
