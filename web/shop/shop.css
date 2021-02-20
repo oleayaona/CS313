@@ -218,7 +218,7 @@ footer {
     border: 1px solid #474747;
     color: #474747;
 }
-.items-left {
+p.items-left {
     font-size: 0.8em;
     color: rgb(187, 119, 119);
 }
