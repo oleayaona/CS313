@@ -381,8 +381,7 @@ div.form-btns a:hover {
     color: #635143;
 }
 .checkout-header {
-    margin-block-start: 40px;
-    margin-block-end: 0px;
+    margin: 20px 0px -10px 0px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 /*--------- CONFIRMATION ----------*/

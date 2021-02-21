@@ -52,6 +52,13 @@
         <p>&#169; Homey. All rights reserved.</p>
         <p>Olea Yaona | BYU-Idaho | CSE-341</p>
     </footer>
+<script>
+    // Number only input
+    function numberOnly(id){
+        var input = document.getElementById(id).value.replace(/\D/g, '');
+        document.getElementById(id).value = input;
+    }
+</script>
 </body>
 
 </html>
