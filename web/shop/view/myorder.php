@@ -25,13 +25,13 @@
     </header>
 
     <main>
-        <h3 id='shop-message'>
+        <p id='shop-message'>
             <?php
                 if (isset($_SESSION['message'])) {
                     echo $_SESSION['message'];
                 }
             ?>
-        </h3>
+        </p>
         <div class="view-order-container">
             <h2>My order</h2>
                 <form action="index.php" method="POST">
