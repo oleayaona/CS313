@@ -189,7 +189,7 @@ footer {
 }
 /*------- FILTER --------*/
 .categories {
-    width: 65%;
+    width: 70%;
     text-align: right;
     margin: auto;
     font-family: 'Open Sans', sans-serif;
@@ -257,7 +257,7 @@ p.items-left {
 .view-order-container input[type="submit"] {
     background-color: #9e826d;
     color: white;
-    padding: 10px 40px;
+    padding: 10px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -555,6 +555,7 @@ div.form-btns a:hover {
     }
     .view-order-container input[type="submit"] {
         width: 20%;
+        padding: 10px 40px;
     }
     /*-------- CHECKOUT -----------*/
     .checkout {
