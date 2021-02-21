@@ -30,6 +30,7 @@ main {
 #search-row form {
     display: flex;
     margin-top: -10px;
+    justify-content: center;
 }
 #search-row button {
     background: none;
@@ -188,9 +189,10 @@ footer {
 }
 /*------- FILTER --------*/
 .categories {
-    width: 60%;
+    width: 65%;
     text-align: right;
     margin: auto;
+    font-family: 'Open Sans', sans-serif;
 }
 /*-------- PRODUCT INFO -------*/
 .info-display {
