@@ -247,7 +247,7 @@ p.items-left {
     font-weight: bolder;
 }
 .view-order-container form input {
-    width: 50%;
+    width: 80%;
     border-radius: 5px;
     padding: 10px 10px;
     border: 1px solid #9ea1a1;
@@ -261,7 +261,7 @@ p.items-left {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 35%;
+    width: 50%;
     text-align: center;
 }
 .view-order-container input[type="submit"]:hover {
