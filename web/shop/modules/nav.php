@@ -1,6 +1,6 @@
 <ul class="nav">
     <li id="search-row">  
-        <form action="./index.php" method="GET">
+        <form action="./index.php" method="GET" id="search-form">
             <input type="text" id="search" name="search" placeholder="Search...">
             <button id="search-btn" type="submit"><img src="./images/search-icon.png" alt="search icon"></button>
             <input type="hidden" name="action" value="search">

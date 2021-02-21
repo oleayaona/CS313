@@ -3,15 +3,6 @@
 -- DROP TABLE public.user - Removes the user table completely so we can re-create it
 -- \q - Quit the application and go back to the regular command prompt
 
--- CREATE TABLE customer
--- (
--- 	customer_id SERIAL NOT NULL PRIMARY KEY,
--- 	customer_email VARCHAR(100) NOT NULL UNIQUE,
--- 	customer_password VARCHAR(100) NOT NULL,
--- 	customer_firstname VARCHAR(100) NOT NULL,
--- 	customer_lastname VARCHAR(100) NOT NULL
--- );
-
 CREATE TABLE customer
 (
 	customer_id SERIAL NOT NULL PRIMARY KEY,

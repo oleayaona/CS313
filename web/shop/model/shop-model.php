@@ -60,6 +60,7 @@ function addToCart($product) {
     $_SESSION['cart'][] = $product;
 }
 
+// Removes a product with id from session cart
 function deleteFromCart($id){
     // echo "<pre>" . print_r($_SESSION['cart'], true) . "</pre>" ;
     for ($i = 0; $i <= count($_SESSION['cart']); $i++) {
