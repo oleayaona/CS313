@@ -61,7 +61,7 @@
                 <label for="country">Country</label>
             </div>
             <div class="form-btns">
-                <a href="./index.php?action=cart"><p>< Return to cart</p></a>
+                <a href="./index.php?action=cart"><p>&#8592; Return to cart</p></a>
                 <button id="pay-now-btn" type="submit">PAY NOW</button>
             </div>
         </fieldset>

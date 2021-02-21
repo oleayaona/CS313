@@ -8,7 +8,7 @@ function buildProductsDisplay($products){
      $display .= "<img class='product-img' src='./images/$product[prod_img]' alt='$product[prod_name]'></a>";
      $display .= "<a href='./index.php?action=product-info&id=" . urlencode($product['prod_id']) . "'><h2>" . strtoupper($product['prod_name']) . "</h2></a>";
      $display .= "<h4>&#8369;". number_format($product['prod_price'], 2) ."</h4>";
-     $display .= "<a href='./index.php?action=add-to-cart&id=" . urlencode($product['prod_id']) . "'><h5 class='add-cart'>ADD TO CART</h3></a>";
+     $display .= "<a href='./index.php?action=add-to-cart&id=" . urlencode($product['prod_id']) . "'><h5 class='add-cart'>ADD TO CART</h5></a>";
      $display .= '</li>';
     }
     $display .= '</ul>';
@@ -67,7 +67,7 @@ function buildSummaryDisplay($products, $orders) {
 // Builds a select element for product categories in the db
 function buildCategoriesSelect($categories, $selected) {
     $display = '<form action="index.php" method="GET" class="categories">';
-    $display .= '<label for="categories">Filter: </label><select name="category" onchange="this.form.submit()">';
+    $display .= '<label for="category">Filter: </label><select name="category" id="category" onchange="this.form.submit()">';
     $display .= "<option value='0'>All</option>";
     foreach ($categories as $category) {
         if ($category['category_id'] == $selected) {
@@ -88,7 +88,7 @@ function buildProductInfoDisplay($product) {
     $display .= "<div><h2>$product[prod_name]</h2>";
     $display .= '<p>&#8369;'. number_format($product['prod_price'], 2) ."</p><p>$product[prod_description]</p>";
     $display .= "<p class='items-left'>$product[prod_stock] items left</p>";
-    $display .= '<a href="./index.php?action=add-to-cart&id=' . urlencode($product['prod_id']) . '"><h5 class="add-cart">ADD TO CART</h3></a>';
+    $display .= '<a href="./index.php?action=add-to-cart&id=' . urlencode($product['prod_id']) . '"><h5 class="add-cart">ADD TO CART</h5></a>';
     $display .= '</div> </section>';
     return $display;
 }
