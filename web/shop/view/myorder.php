@@ -58,6 +58,20 @@
         var input = document.getElementById(id).value.replace(/\D/g, '');
         document.getElementById(id).value = input;
     }
+
+
+    // make sure search bar is not empty
+    var validate = function(event) {
+        var input = document.querySelector('#search');
+        if (input.value.length == 0) {
+            event.preventDefault();
+            input.focus();
+        }
+    };
+    // get form
+    var form = document.querySelector("#search-form");
+    // attach event listener
+    form.addEventListener("submit", validate, true);
 </script>
 </body>
 

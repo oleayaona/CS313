@@ -38,6 +38,7 @@
     </footer>
 
 <script>
+    // make sure search bar is not empty
     var validate = function(event) {
         var input = document.querySelector('#search');
         if (input.value.length == 0) {

@@ -42,6 +42,22 @@
         <p>&#169; Homey. All rights reserved.</p>
         <p>Olea Yaona | BYU-Idaho | CSE-341</p>
     </footer>
+<script>
+    // make sure search bar is not empty
+    var validate = function(event) {
+        var input = document.querySelector('#search');
+        if (input.value.length == 0) {
+            event.preventDefault();
+            input.focus();
+        }
+    };
+
+    // get form
+    var form = document.querySelector("#search-form");
+
+    // attach event listener
+    form.addEventListener("submit", validate, true);
+</script>
 </body>
 
 </html>
